@@ -17,8 +17,18 @@ function* fetchTournaments() {
     }
 }
 
+function* fetchTournamentDetail(action) {
+    console.log(action.payload);
+    try {
+        const res = yield axios.post('/api/tournaments/'+action.payload)
+    } catch (error) {
+        
+    }
+}
+
 function* tournamentsSagas(){
     yield takeLatest('FETCH_TOURNAMENTS_DATA', fetchTournaments)
+    yield takeLatest("FETCH_TOURNAMENT_DETAILS", fetchTournamentDetail)
 }
 
 export default tournamentsSagas
