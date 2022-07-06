@@ -19,7 +19,9 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+//
 import CCMainPage from '../CCMainPage/CCMainPage';
+import CCNav from '../CCNav/CCNav';
 
 import './App.css';
 
@@ -35,7 +37,7 @@ function App() {
   return (
     <Router>
       <div>
-        <Nav />
+        
         <Switch>
           {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
           <Redirect exact from="/" to="/home" />
@@ -69,8 +71,9 @@ function App() {
             <InfoPage />
           </ProtectedRoute>
           
-          <Route path="/main">
+          <Route exact path="/main">
             <CCMainPage/>
+            <CCNav/>
           </Route>
 
           <Route
@@ -120,7 +123,7 @@ function App() {
             <h1>404</h1>
           </Route>
         </Switch>
-        <Footer />
+    
       </div>
     </Router>
   );

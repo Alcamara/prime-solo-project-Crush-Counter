@@ -1,5 +1,7 @@
 import { useEffect } from "react"
 import { useDispatch } from "react-redux"
+import CCHeader from "../CCHeader/CCHeader"
+import CCNav from "../CCNav/CCNav"
 
 export default function () {
     const dispatch = useDispatch()
@@ -12,7 +14,12 @@ export default function () {
 
     return (
         <div>
-            <h1>Crush Counter</h1>
+            <CCHeader/>
+            <main>
+                
+            </main>
         </div>
+        
+        
     )
 }
