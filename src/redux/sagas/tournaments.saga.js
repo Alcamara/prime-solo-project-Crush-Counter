@@ -21,6 +21,7 @@ function* fetchTournamentDetail(action) {
     console.log(action.payload);
     try {
         const res = yield axios.post('/api/tournaments/'+action.payload)
+        console.log(res.data);
     } catch (error) {
         
     }

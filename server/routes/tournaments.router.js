@@ -108,8 +108,8 @@ axios({
   headers:headers,
   data: graphqlQuery
 }).then((resp)=>{
-  console.log(resp.data.data.tournaments.nodes)
- //res.send(resp.data.data.tournaments.nodes)
+  console.log(resp.data.data)
+ res.send(resp.data.data)
 }).catch((err)=>{
   console.error(`${err}`);
 })
