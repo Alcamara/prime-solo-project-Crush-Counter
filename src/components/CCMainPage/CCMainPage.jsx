@@ -3,6 +3,7 @@ import { useDispatch,useSelector } from "react-redux"
 import { Link, useHistory } from 'react-router-dom';
 import CCTournamentCards from "../CCTournamentCards/CCTournamentCards"
 import CCHeader from "../CCHeader/CCHeader"
+import CCNav from "../CCNav/CCNav";
 import './CCMainPage.css'
 
 //joy-ui
@@ -56,7 +57,7 @@ export default function () {
                 >
                     { tournamentsByAttendees && <div>{tournamentsByAttendees.map(tournament =>(
                        <SwiperSlide 
-                            onClick={()=> history.push('/TDetail/'+tournament.id) }
+                            onClick={()=> history.push('/tournamentDetail/'+tournament.id) }
                             key={tournament.id} 
                         > 
                         <CCTournamentCards 
@@ -80,7 +81,7 @@ export default function () {
                         {tournamentsNearBy && tournamentsNearBy.map(tournament => (
                             
                                 <SwiperSlide 
-                                    onClick={()=> history.push('/TDetail/'+tournament.id)} 
+                                    onClick={()=> history.push('/tournamentDetail'+tournament.id)} 
                                     key={tournament.id} 
                                 > 
                                     <CCTournamentCards 

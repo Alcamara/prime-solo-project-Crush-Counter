@@ -5,6 +5,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import HomeIcon from '@material-ui/icons/Home';
 
+import { Link } from 'react-router-dom';
+
 //css
 import './CCNav.css'
 
@@ -29,8 +31,12 @@ export default function CCNav(){
             showLabels
             className={classes.root}
             >
+            
             <BottomNavigationAction label="Tournaments" icon={<SearchIcon />} />
-            <BottomNavigationAction label="Main" icon={<HomeIcon />} />
+            {/* redirect user to main page */}
+            <Link to={"/main"}>
+              <BottomNavigationAction label="Main" icon={<HomeIcon />} />
+            </Link>
             <BottomNavigationAction label="Player Hub" icon={<AssessmentIcon />} />
             </BottomNavigation>
 
