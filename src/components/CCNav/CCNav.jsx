@@ -5,6 +5,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import HomeIcon from '@material-ui/icons/Home';
 
+//css
+import './CCNav.css'
+
 const useStyles = makeStyles({
     root: {
       width: 375,
@@ -17,7 +20,7 @@ export default function CCNav(){
     
 
     return(
-       <div className=''>
+       <div className='bottomNav'>
             <BottomNavigation
             
             onChange={(event, newValue) => {
