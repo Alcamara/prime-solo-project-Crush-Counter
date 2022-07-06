@@ -19,9 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-//
 import CCMainPage from '../CCMainPage/CCMainPage';
-
+import CCTournamentDetailCard from '../CCTournamentDetailCard/CCTournamentDetailCard';
 import CCNav from '../CCNav/CCNav';
 
 import './App.css';
@@ -84,9 +83,8 @@ function App() {
           {/* CCTournamentsDetails Page */}
 
           <Route exact path="/TDetail/:id">
-            <p>hey</p>
-            <CCNav/>
-            
+          
+            <CCTournamentDetailCard/>
             
           </Route>
 
