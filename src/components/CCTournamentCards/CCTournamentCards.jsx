@@ -4,16 +4,24 @@ import Box from '@mui/joy/Box';
 import Card from '@mui/joy/Card';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Typography from '@mui/joy/Typography';
+//css
+import './CCTournamentCards.css'
+
 
 export default function CCTournamentCards({tournament}){
-    console.log(tournament.images[0].url);
+    const startTimeStamp = tournament.startAt
+    const endTimeStamp = tournament.endAt
+    let startDate = new Date(startTimeStamp * 1000)
+    let endDate = new Date(endTimeStamp * 1000);
+    
+
     return (
-        <div >
-            <Card variant="outlined" sx={{ maxWidth: 220 }}>
+        <div className='cards' >
+            <Card variant="outlined" sx={{ maxWidth: 210 }}>
                 <CardOverflow>
                     <AspectRatio ratio="2">
                         <img
-                            src={tournament.images[0].url}
+                            src={tournament.images[1].url}
                             alt=""
                         />
                     </AspectRatio>
@@ -22,7 +30,7 @@ export default function CCTournamentCards({tournament}){
                     {tournament.name}
                 </Typography>
                 <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
-                    California
+                    {tournament.addrState}
                 </Typography>
                 <CardOverflow
                     variant="soft"
@@ -37,11 +45,11 @@ export default function CCTournamentCards({tournament}){
                     }}
                 >
                     <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
-                    6.3k views
+                    {tournament.numAttendees} participants
                     </Typography>
                     <Box sx={{ width: 2, bgcolor: 'divider' }} />
                     <Typography level="body3" sx={{ fontWeight: 'md', color: 'text.secondary' }}>
-                    1 hour ago
+                    {`${startDate.getMonth()+1}/${startDate.getDate()} - ${endDate.getDate()}`}
                     </Typography>
                 </CardOverflow>
             </Card>

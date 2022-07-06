@@ -35,6 +35,7 @@ router.get('/', (req, res) => {
             nodes{
               id
               name
+              addrState
               isRegistrationOpen
               isOnline
               startAt

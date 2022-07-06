@@ -1,6 +1,12 @@
-.featureTournament {
-    display: flex;
-    flex-direction: row;
-    height: 300px;
-    overflow: scroll;
+.featureTournaments {
+    
+    margin: 0 auto;
+    
+    
+}
+
+
+
+.feature-tournaments_header{
+    text-align: center;
 }
