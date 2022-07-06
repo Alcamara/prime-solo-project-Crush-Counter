@@ -21,6 +21,7 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 //
 import CCMainPage from '../CCMainPage/CCMainPage';
+
 import CCNav from '../CCNav/CCNav';
 
 import './App.css';
@@ -77,12 +78,16 @@ function App() {
           <Route exact path="/main">
             <CCMainPage/>
             <CCNav/>
+            
           </Route>
 
           {/* CCTournamentsDetails Page */}
 
-          <Route exact path='/tournamentSearch/:id'>
-
+          <Route exact path="/TDetail/:id">
+            <p>hey</p>
+            <CCNav/>
+            
+            
           </Route>
 
           <Route
