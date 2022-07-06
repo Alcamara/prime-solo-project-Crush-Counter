@@ -6,19 +6,19 @@ import axios from 'axios';
     function does an axios get request retrieve tournament data
     from api and return it
 */
-function* tournaments() {
+function* fetchTournaments() {
     try {
         
-        const res = yield axios.get('api/tournaments')
-        //console.log(res.data);
-        yield put({})
+        const tournamentsList = yield axios.get('api/tournaments')
+        //console.log(tournamentsList.data);
+        yield put({ type: "SET_TOURNAMENT_DATA", payload: tournamentsList.data })
     } catch (err) {
         console.log(`axios get failed ${err}`);
     }
 }
 
 function* tournamentsSagas(){
-    yield takeLatest('FETCH_TOURNAMENTS_DATA', tournaments)
+    yield takeLatest('FETCH_TOURNAMENTS_DATA', fetchTournaments)
 }
 
 export default tournamentsSagas
