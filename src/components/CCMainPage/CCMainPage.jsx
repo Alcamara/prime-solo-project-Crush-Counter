@@ -1,7 +1,8 @@
 import { useEffect } from "react"
 import { useDispatch,useSelector } from "react-redux"
+import CCTournamentCards from "../CCTournamentCards/CCTournamentCards"
 import CCHeader from "../CCHeader/CCHeader"
-import CCNav from "../CCNav/CCNav"
+import './CCMainPage.css'
 
 export default function () {
     const dispatch = useDispatch()
@@ -22,11 +23,11 @@ export default function () {
         <div>
             <CCHeader/>
             <main>
-                <div>
+                <div className="featureTournament">
 
-                    { tournaments && <ul>{tournaments.sort((a,b) =>( b.numAttendees - a.numAttendees )).map(tournament =>(
-                        <li key={tournament.id}>{tournament.numAttendees}</li>
-                    ))}</ul>}
+                    { tournaments && <div>{tournaments.sort((a,b) =>( b.numAttendees - a.numAttendees )).map(tournament =>(
+                        <CCTournamentCards key={tournament.id} tournament={tournament} />
+                    ))}</div>}
 
                 </div>
                 

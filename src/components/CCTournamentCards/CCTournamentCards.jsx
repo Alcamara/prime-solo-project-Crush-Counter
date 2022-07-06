@@ -5,20 +5,21 @@ import Card from '@mui/joy/Card';
 import CardOverflow from '@mui/joy/CardOverflow';
 import Typography from '@mui/joy/Typography';
 
-export default function CCTournamentCards(){
+export default function CCTournamentCards({tournament}){
+    console.log(tournament.images[0].url);
     return (
         <div >
-            <Card variant="outlined" sx={{ minWidth: 320 }}>
+            <Card variant="outlined" sx={{ maxWidth: 220 }}>
                 <CardOverflow>
                     <AspectRatio ratio="2">
                         <img
-                            src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?crop=entropy&auto=format&fit=crop&w=3270"
+                            src={tournament.images[0].url}
                             alt=""
                         />
                     </AspectRatio>
                 </CardOverflow>
                 <Typography level="h2" sx={{ fontSize: 'md', mt: 2 }}>
-                    Yosemite National Park
+                    {tournament.name}
                 </Typography>
                 <Typography level="body2" sx={{ mt: 0.5, mb: 2 }}>
                     California
