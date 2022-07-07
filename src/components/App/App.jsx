@@ -77,25 +77,25 @@ function App() {
           {/* user main page
             switch router to protected later
           */}
-          <Route exact path="/main">
+          <ProtectedRoute exact path="/main">
             <CCMainPage/>
             <CCNav/>
             
-          </Route>
+          </ProtectedRoute>
 
           {/* CCtournamentSearch */}
-          <Route exact path="/tournamentSearch">
+          <ProtectedRoute exact path="/tournamentSearch">
             <CCHeader/>
             <CCTournamentSearch/>
             <CCNav/> 
-          </Route>
+          </ProtectedRoute>
 
           {/* CCTournamentsDetails Page */}
-          <Route exact path="/tournamentDetail/:id">
+          <ProtectedRoute exact path="/tournamentDetail/:id">
             <CCHeader/>
             <CCTournamentDetailCard/>
             <CCNav/> 
-          </Route>
+          </ProtectedRoute>
 
           <Route
             exact
