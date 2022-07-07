@@ -82,8 +82,14 @@ function App() {
             
           </Route>
 
-          {/* CCTournamentsDetails Page */}
+          {/* CCtournamentSearch */}
+          <Route exact path="/tournamentSearch">
+            <CCHeader/>
+            
+            <CCNav/> 
+          </Route>
 
+          {/* CCTournamentsDetails Page */}
           <Route exact path="/tournamentDetail/:id">
             <CCHeader/>
             <CCTournamentDetailCard/>

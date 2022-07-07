@@ -100,6 +100,7 @@ router.post('/:id',(req,res)=>{
           url
         }
         rules
+        url
         
       }
     }

@@ -5,7 +5,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import HomeIcon from '@material-ui/icons/Home';
 
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 //css
 import './CCNav.css'
@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 export default function CCNav(){
 
     const classes = useStyles();
-    
+    const history = useHistory()
 
     return(
        <div className='bottomNav'>
@@ -34,9 +34,13 @@ export default function CCNav(){
             
             <BottomNavigationAction label="Tournaments" icon={<SearchIcon />} />
             {/* redirect user to main page */}
-            <Link to={"/main"}>
-              <BottomNavigationAction label="Main" icon={<HomeIcon />} />
-            </Link>
+            
+              <BottomNavigationAction
+                onClick={()=> history.push("/main") } 
+                label="Main" 
+                icon={<HomeIcon />} 
+              />
+            
             <BottomNavigationAction label="Player Hub" icon={<AssessmentIcon />} />
             </BottomNavigation>
 
