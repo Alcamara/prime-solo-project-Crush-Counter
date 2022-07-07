@@ -46,7 +46,7 @@ export default function () {
             <CCHeader/>
                 <h2 className="feature-tournaments_header" >Feature Tournaments</h2>
                 <Swiper
-                    className="featureTournaments"
+                   
                     spaceBetween={0}
                     slidesPerView={1}
                     navigation
@@ -70,7 +70,7 @@ export default function () {
                 <h2 className="feature-tournaments_header" >Upcoming Tournaments</h2>
                 
                 <Swiper
-                    className="featureTournaments"
+                    
                     spaceBetween={0}
                     slidesPerView={1}
                     navigation
