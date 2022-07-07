@@ -45,7 +45,7 @@ export default function CCNav(){
                 onClick={()=> {
 
                   history.push("/main")
-                  dispatch({ type: "CLEAR"})
+                  dispatch({ type: "CLEAR_TOURNAMENT_DETAILS"})
                 }} 
                 label="Main" 
                 icon={<HomeIcon />} 

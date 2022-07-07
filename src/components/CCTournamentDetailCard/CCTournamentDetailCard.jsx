@@ -41,7 +41,9 @@ export default function () {
     const dispatch = useDispatch()
     const {id} = useParams()
     const tournamentDetail = useSelector(store => store.tournament)
-    
+    if(tournamentDetail){
+        console.log(tournamentDetail);
+    }
     //time
 
     const [expanded, setExpanded] = useState(false);
@@ -66,7 +68,7 @@ export default function () {
             <CardHeader
               avatar={
                 <Avatar  aria-label="recipe">
-                  <img src={tournamentDetail.images[0].url} alt=""  />
+                  {/* <img src={tournamentDetail.images[0].url} alt=""  /> */}
                 </Avatar>
               }
               action={
@@ -80,7 +82,7 @@ export default function () {
             <CardMedia
               component="img"
               height="194"
-              image={tournamentDetail.images[1].url}
+            //   image={tournamentDetail.images[1].url}
               alt="Paella dish"
             />
             <CardContent>

@@ -19,6 +19,8 @@ export const tournament = (state = {}, action)=>{
         case "SET_TOURNAMENT_DETAILS":
             
             return action.payload;
+        case "CLEAR_TOURNAMENT_DETAILS":
+            return {}
     
         default:
             return state;
