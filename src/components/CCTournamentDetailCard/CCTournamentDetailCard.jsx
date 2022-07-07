@@ -7,7 +7,9 @@ export default function () {
 
     const dispatch = useDispatch()
     const {id} = useParams()
+    const tournamentDetail = useSelector(store => store.tournament)
 
+    
     useEffect(()=>{
         
         console.log(id);
@@ -19,7 +21,7 @@ export default function () {
 
     return(
         <div>
-            <h2>Tournament Details</h2>
+           { tournamentDetail && <h2>{tournamentDetail.name}</h2>}
             <p>lkajdflkjasdl;fkjal;fkjda</p>
         </div>
     )

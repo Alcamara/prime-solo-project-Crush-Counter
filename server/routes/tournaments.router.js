@@ -67,6 +67,11 @@ router.get('/', (req, res) => {
     })
 });
 
+/*
+  request tournament data using
+  tournament id and return it to 
+  the client
+*/ 
 router.post('/:id',(req,res)=>{
   const id = req.params.id;
   console.log(id);
