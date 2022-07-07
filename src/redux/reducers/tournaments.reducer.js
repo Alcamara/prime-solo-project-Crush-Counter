@@ -16,7 +16,7 @@ export const tournament = (state = {}, action)=>{
     console.log('in tournament details reducers')
 
     switch (action.type) {
-        case "SET_FETCH_TOURNAMENT_DETAILS":
+        case "SET_TOURNAMENT_DETAILS":
             
             return action.payload;
     

@@ -125,7 +125,7 @@ axios({
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.get('/search', (req, res) => {
   // POST route code here
 });
 
