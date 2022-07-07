@@ -1,9 +1,9 @@
 
 
-const tournaments = (state = [], action) =>{
+export const tournaments = (state = [], action) =>{
     console.log('in tournament reducer');
     switch (action.type) {
-        case "SET_TOURNAMENT_DATA":
+        case "SET_TOURNAMENTS_DATA":
             
             return action.payload;
     
@@ -12,5 +12,18 @@ const tournaments = (state = [], action) =>{
     }
 }
 
+export const tournament = (state = {}, action)=>{
+    console.log('in tournament details reducers')
 
-export default tournaments
+    switch (action.type) {
+        case "SET_FETCH_TOURNAMENT_DETAILS":
+            
+            return action.payload;
+    
+        default:
+            return state;
+    }
+
+}
+
+
