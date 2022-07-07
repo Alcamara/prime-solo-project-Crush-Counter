@@ -35,6 +35,9 @@ function* fetchTournamentsList() {
     try {
         
         const tournamentSearchList = yield axios.get('/api/tournaments/search')
+        console.log(tournamentSearchList.data);
+
+        yield put({ type:"SET_TOURNAMENTS_LIST", payload: tournamentSearchList.data})
         
     } catch (error) {
         console.log(`${errorr}`);

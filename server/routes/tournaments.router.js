@@ -143,7 +143,6 @@ router.get('/search', (req, res) => {
             page:1
             filter:{
               videogameIds: [7,10055]
-              addrState:""
               afterDate: 1657201146
               past:false
               upcoming: true
@@ -173,6 +172,21 @@ router.get('/search', (req, res) => {
         }
         `,
     };
+
+
+    axios({
+      url:endpoint,
+      method:"POST",
+      headers:headers,
+      data: graphqlQuery
+    }).then((resp)=>{
+      console.log('tournament Search List',resp.data.data.tournaments.nodes)
+     res.send(resp.data.data.tournaments.nodes)
+    }).catch((err)=>{
+      console.error(`${err}`);
+    })
+
+
 });
 
 module.exports = router;

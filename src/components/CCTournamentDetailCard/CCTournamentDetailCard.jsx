@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-
+import { useParams, useHistory } from "react-router-dom"
 //css
 
 //MUI
@@ -41,10 +40,7 @@ export default function () {
     const dispatch = useDispatch()
     const {id} = useParams()
     const tournamentDetail = useSelector(store => store.tournament)
-    if(tournamentDetail){
-        console.log(tournamentDetail);
-    }
-    //time
+    const history = useHistory()
 
     const [expanded, setExpanded] = useState(false);
 
@@ -63,12 +59,12 @@ export default function () {
 
     return(
         <div className="tournament-card">
-           { tournamentDetail && 
+           { tournamentDetail && tournamentDetail.images && tournamentDetail.images.length >= 1 &&
             <Card sx={{ maxWidth: 445 }}>
             <CardHeader
               avatar={
                 <Avatar  aria-label="recipe">
-                  {/* <img src={tournamentDetail.images[0].url} alt=""  /> */}
+                  <img src={tournamentDetail.images[0].url} alt=""  />
                 </Avatar>
               }
               action={
@@ -82,7 +78,7 @@ export default function () {
             <CardMedia
               component="img"
               height="194"
-            //   image={tournamentDetail.images[1].url}
+              image={tournamentDetail.images[1].url}
               alt="Paella dish"
             />
             <CardContent>
@@ -117,7 +113,15 @@ export default function () {
           </Card>}
           <div className="buttons">
           <Stack  direction="row" spacing={2}>
-            <Button color="error" variant="contained">Back</Button>
+            <Button
+              onClick={()=>{
+                history.push('/tournamentSearch')
+              }} 
+              color="error" 
+              variant="contained"
+            >
+              Back
+            </Button>
             <Button color="success" variant="contained">Sign up for Tournament</Button>
           </Stack>
           </div>

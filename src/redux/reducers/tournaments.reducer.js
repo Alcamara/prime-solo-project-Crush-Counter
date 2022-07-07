@@ -28,4 +28,15 @@ export const tournament = (state = {}, action)=>{
 
 }
 
+export const tournamentSearch = (state = [], action)=>{
+    switch (action.type) {
+        case "SET_TOURNAMENTS_LIST":
+            
+            return action.payload;
+    
+        default:
+            return state;
+    }
+}
+
 
