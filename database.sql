@@ -16,14 +16,21 @@ CREATE TABLE "user" (
 	 "zipCode" INTEGER NOT NULL
 );
 
-CREATE TABLE "matchNotes" (
+CREATE TABLE "matchNote" (
 	"id" SERIAL PRIMARY KEY,
+	"tournamentId" INTEGER NOT NULL,
 	"win" BOOLEAN NOT NULL,
 	"skillDemonstrated" VARCHAR(80) NOT NULL,
-	"skillToImprove" VARCHAR(80) NOT NULL
+	"skillToImprove" VARCHAR(80) NOT NULL,
+	"note" VARCHAR(250)
 );
 
 
+CREATE TABLE "userMatchNote"(
+	"id" SERIAL PRIMARY KEY,
+	"user_id" INT REFERENCES "user",
+	"matchNote_id" INT REFERENCES "matchNote"
+);
 
 
 
