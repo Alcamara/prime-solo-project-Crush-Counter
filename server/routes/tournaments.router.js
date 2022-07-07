@@ -74,64 +74,6 @@ router.get('/',rejectUnauthenticated,(req, res) => {
     })
 });
 
-/*
-  request tournament data using
-  tournament id and return it to 
-  the client
-*/ 
-router.post('/:id',rejectUnauthenticated,(req,res)=>{
-  const id = req.params.id;
-  console.log(id);
-
-  const endpoint = "https://api.start.gg/gql/alpha";
-
-  const headers = {
-      "content-type": "application/json",
-      "Authorization": "Bearer " + process.env.STARTGG_API_KEY
-  };
-
-  const graphqlQuery = {
-    "query": `
-    query{
-      tournament(id:${id}){
-        id
-        name
-        startAt
-        endAt
-        isRegistrationOpen
-        numAttendees
-        venueName
-        venueAddress
-        images {
-          id
-          url
-        }
-        rules
-        url
-        
-      }
-    }
-    `,
-};
-
-
-axios({
-  url:endpoint,
-  method:"POST",
-  headers:headers,
-  data: graphqlQuery
-}).then((resp)=>{
-  console.log(resp.data.data)
- res.send(resp.data.data)
-}).catch((err)=>{
-  console.error(`${err}`);
-})
-
-})
-
-/**
- * 
- */
 router.get('/search', rejectUnauthenticated,(req, res) => {
   
     // GET route code here
@@ -195,5 +137,69 @@ router.get('/search', rejectUnauthenticated,(req, res) => {
 
 
 });
+
+
+/*
+  request tournament data using
+  tournament id and return it to 
+  the client
+*/ 
+router.post('/:id',rejectUnauthenticated,(req,res)=>{
+  const id = req.params.id;
+  console.log(id);
+
+  const endpoint = "https://api.start.gg/gql/alpha";
+
+  const headers = {
+      "content-type": "application/json",
+      "Authorization": "Bearer " + process.env.STARTGG_API_KEY
+  };
+
+  const graphqlQuery = {
+    "query": `
+    query{
+      tournament(id:${id}){
+        id
+        name
+        startAt
+        endAt
+        isRegistrationOpen
+        numAttendees
+        venueName
+        venueAddress
+        images {
+          id
+          url
+        }
+        rules
+        url
+        
+      }
+    }
+    `,
+};
+
+
+axios({
+  url:endpoint,
+  method:"POST",
+  headers:headers,
+  data: graphqlQuery
+}).then((resp)=>{
+  console.log(resp.data.data)
+ res.send(resp.data.data)
+}).catch((err)=>{
+  console.error(`${err}`);
+})
+
+})
+
+/**
+ * 
+ */
+router.post('/bookmark/:id',(req,res)=>{
+  const id = req.params.id
+  console.log(id);
+})
 
 module.exports = router;

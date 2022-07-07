@@ -69,7 +69,14 @@ export default function () {
               }
               action={
                 <IconButton aria-label="settings">
-                  <BookmarkAddIcon />
+                  <BookmarkAddIcon
+                    onClick={()=>{
+                      dispatch({
+                        type: "BOOKMARK_TOURNAMENT",
+                        payload: tournamentDetail.id
+                      })
+                    }}
+                  />
                 </IconButton>
               }
               title={tournamentDetail.name}

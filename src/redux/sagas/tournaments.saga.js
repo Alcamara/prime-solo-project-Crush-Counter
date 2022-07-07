@@ -44,10 +44,20 @@ function* fetchTournamentsList() {
     }
 }
 
+function* bookmarkTournament(action){
+    console.log(action.payload);
+    try {
+        yield axios.post('/api/tournaments/bookmark/'+action.payload)
+    } catch (error) {
+        console.log(`${error}`);
+    }
+}
+
 function* tournamentsSagas(){
     yield takeLatest('FETCH_TOURNAMENTS_DATA', fetchTournaments)
     yield takeLatest("FETCH_TOURNAMENT_DETAILS", fetchTournamentDetail)
     yield takeLatest("FETCH_TOURNAMENTS_LIST", fetchTournamentsList)
+    yield takeLatest("BOOKMARK_TOURNAMENT", bookmarkTournament)
 }
 
 export default tournamentsSagas
