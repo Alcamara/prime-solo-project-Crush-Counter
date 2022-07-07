@@ -115,7 +115,8 @@ export default function () {
           <Stack  direction="row" spacing={2}>
             <Button
               onClick={()=>{
-                history.push('/tournamentSearch')
+                //goes Back to prev page
+                history.goBack()
               }} 
               color="error" 
               variant="contained"
