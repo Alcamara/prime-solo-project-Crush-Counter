@@ -3,6 +3,8 @@
 -- You must use double quotes in every query that user is in:
 -- ex. SELECT * FROM "user";
 -- Otherwise you will have errors!
+
+--name of the database is cruch-counter-database
 CREATE TABLE "user" (
 	"id" SERIAL PRIMARY KEY,
 	"email" VARCHAR(100) NOT NULL,
