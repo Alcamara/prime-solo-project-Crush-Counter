@@ -81,7 +81,7 @@ export default function () {
                         {tournamentsNearBy && tournamentsNearBy.map(tournament => (
                             
                                 <SwiperSlide 
-                                    onClick={()=> history.push('/tournamentDetail'+tournament.id)} 
+                                    onClick={()=> history.push('/tournamentDetail/'+tournament.id)} 
                                     key={tournament.id} 
                                 > 
                                     <CCTournamentCards 
