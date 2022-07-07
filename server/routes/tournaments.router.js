@@ -3,12 +3,19 @@ const pool = require('../modules/pool');
 const router = express.Router();
 const axios = require('axios')
 require('dotenv').config()
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
+router.get('/',rejectUnauthenticated,(req, res) => {
+
+  //add reject inside get as peram
+
   // GET route code here
   const endpoint = "https://api.start.gg/gql/alpha";
+
 
     const headers = {
         "content-type": "application/json",
@@ -72,7 +79,7 @@ router.get('/', (req, res) => {
   tournament id and return it to 
   the client
 */ 
-router.post('/:id',(req,res)=>{
+router.post('/:id',rejectUnauthenticated,(req,res)=>{
   const id = req.params.id;
   console.log(id);
 
@@ -125,7 +132,7 @@ axios({
 /**
  * 
  */
-router.get('/search', (req, res) => {
+router.get('/search', rejectUnauthenticated,(req, res) => {
   
     // GET route code here
     const endpoint = "https://api.start.gg/gql/alpha";
