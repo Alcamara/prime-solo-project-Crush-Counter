@@ -34,6 +34,8 @@ function* fetchTournamentDetail(action) {
 function* fetchTournamentsList() {
     try {
         
+        const tournamentSearchList = yield axios.get('/api/tournaments/search')
+        
     } catch (error) {
         console.log(`${errorr}`);
     }

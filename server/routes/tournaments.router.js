@@ -123,10 +123,56 @@ axios({
 })
 
 /**
- * POST route template
+ * 
  */
 router.get('/search', (req, res) => {
-  // POST route code here
+  
+    // GET route code here
+    const endpoint = "https://api.start.gg/gql/alpha";
+
+    const headers = {
+        "content-type": "application/json",
+        "Authorization": "Bearer " + process.env.STARTGG_API_KEY
+    };
+
+    const graphqlQuery = {
+        "query": `
+        query{
+          tournaments(query:{
+            perPage:300
+            page:1
+            filter:{
+              videogameIds: [7,10055]
+              addrState:""
+              afterDate: 1657201146
+              past:false
+              upcoming: true
+              location:{
+                distance: "2000mi"
+                distanceFrom: "44.97803522723541,-93.26320829751128"
+              }
+            }
+          }){
+            nodes{
+              id
+              name
+              addrState
+              startAt
+              endAt
+              isRegistrationOpen
+              numAttendees
+              venueName
+              venueAddress
+              isOnline
+              images {
+                url
+              }
+              
+            }
+          }
+        }
+        `,
+    };
 });
 
 module.exports = router;
