@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
-
+import { useParams, useHistory } from "react-router-dom"
 //css
 
 //MUI
@@ -41,8 +40,7 @@ export default function () {
     const dispatch = useDispatch()
     const {id} = useParams()
     const tournamentDetail = useSelector(store => store.tournament)
-    
-    //time
+    const history = useHistory()
 
     const [expanded, setExpanded] = useState(false);
 
@@ -61,7 +59,7 @@ export default function () {
 
     return(
         <div className="tournament-card">
-           { tournamentDetail && 
+           { tournamentDetail && tournamentDetail.images && tournamentDetail.images.length >= 1 &&
             <Card sx={{ maxWidth: 445 }}>
             <CardHeader
               avatar={
@@ -115,7 +113,16 @@ export default function () {
           </Card>}
           <div className="buttons">
           <Stack  direction="row" spacing={2}>
-            <Button color="error" variant="contained">Back</Button>
+            <Button
+              onClick={()=>{
+                //goes Back to prev page
+                history.goBack()
+              }} 
+              color="error" 
+              variant="contained"
+            >
+              Back
+            </Button>
             <Button color="success" variant="contained">Sign up for Tournament</Button>
           </Stack>
           </div>

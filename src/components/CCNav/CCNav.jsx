@@ -6,6 +6,7 @@ import AssessmentIcon from '@material-ui/icons/Assessment';
 import HomeIcon from '@material-ui/icons/Home';
 
 import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 //css
 import './CCNav.css'
@@ -20,6 +21,7 @@ export default function CCNav(){
 
     const classes = useStyles();
     const history = useHistory()
+    const dispatch = useDispatch()
 
     return(
        <div className='bottomNav'>
@@ -32,11 +34,19 @@ export default function CCNav(){
             className={classes.root}
             >
             
-            <BottomNavigationAction label="Tournaments" icon={<SearchIcon />} />
-            {/* redirect user to main page */}
+            <BottomNavigationAction
+              onClick={()=> history.push("/tournamentSearch") }  
+              label="Tournaments" 
+              icon={<SearchIcon />} 
+              />
             
+            {/* redirect user to main page */}
               <BottomNavigationAction
-                onClick={()=> history.push("/main") } 
+                onClick={()=> {
+
+                  history.push("/main")
+                  dispatch({ type: "CLEAR_TOURNAMENT_DETAILS"})
+                }} 
                 label="Main" 
                 icon={<HomeIcon />} 
               />

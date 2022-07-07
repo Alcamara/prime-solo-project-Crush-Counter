@@ -16,21 +16,38 @@ function* fetchTournaments() {
         console.log(`axios get failed ${err}`);
     }
 }
-
+/**
+ * function does an axios post request retrieve tournament data by id
+    from api and return it
+ */
 function* fetchTournamentDetail(action) {
-    console.log(action.payload);
+    //console.log(action.payload);
     try {
         const res = yield axios.post('/api/tournaments/'+action.payload)
         
-        yield put({ type: "SET_FETCH_TOURNAMENT_DETAILS", payload: res.data.tournament})
+        yield put({ type: "SET_TOURNAMENT_DETAILS", payload: res.data.tournament})
     } catch (error) {
         
+    }
+}
+
+function* fetchTournamentsList() {
+    try {
+        
+        const tournamentSearchList = yield axios.get('/api/tournaments/search')
+        console.log(tournamentSearchList.data);
+
+        yield put({ type:"SET_TOURNAMENTS_LIST", payload: tournamentSearchList.data})
+        
+    } catch (error) {
+        console.log(`${errorr}`);
     }
 }
 
 function* tournamentsSagas(){
     yield takeLatest('FETCH_TOURNAMENTS_DATA', fetchTournaments)
     yield takeLatest("FETCH_TOURNAMENT_DETAILS", fetchTournamentDetail)
+    yield takeLatest("FETCH_TOURNAMENTS_LIST", fetchTournamentsList)
 }
 
 export default tournamentsSagas

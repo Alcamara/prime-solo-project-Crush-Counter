@@ -24,6 +24,7 @@ import CCMainPage from '../CCMainPage/CCMainPage';
 import CCTournamentDetailCard from '../CCTournamentDetailCard/CCTournamentDetailCard';
 import CCNav from '../CCNav/CCNav';
 import CCHeader from '../CCHeader/CCHeader';
+import CCTournamentSearch from '../CCTournamentSearch/CCTournamentSearch';
 
 import './App.css';
 
@@ -85,7 +86,7 @@ function App() {
           {/* CCtournamentSearch */}
           <Route exact path="/tournamentSearch">
             <CCHeader/>
-            
+            <CCTournamentSearch/>
             <CCNav/> 
           </Route>
 
