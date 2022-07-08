@@ -133,9 +133,8 @@ export default function () {
             </Button>
             <Button 
               onClick={()=>{
-                
+                //redirect user to start tournament page to sign up 
                 window.location.replace('https://start.gg'+ tournamentDetail.url)
-               
               }}
               color="success" 
               variant="contained"
