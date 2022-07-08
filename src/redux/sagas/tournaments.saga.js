@@ -40,7 +40,7 @@ function* fetchTournamentsList() {
         yield put({ type:"SET_TOURNAMENTS_LIST", payload: tournamentSearchList.data})
         
     } catch (error) {
-        console.log(`${errorr}`);
+        console.log(`${error}`);
     }
 }
 
