@@ -46,7 +46,7 @@ export default function CCMatchNote() {
                         direction='row' 
                         spacing={2}
                     >
-                        <Button variant="contained">
+                        <Button variant="outlined">
                             YES
                         </Button>
                         <Button variant="outlined">
@@ -116,10 +116,11 @@ export default function CCMatchNote() {
                 <Button color="error" variant="outlined">
                     CANCEL
                 </Button>
-                <Button variant="contained">
+                <Button variant="outlined">
                     SUBMIT
                 </Button>
             </Stack>
+            
             </div>
 
         </div>
