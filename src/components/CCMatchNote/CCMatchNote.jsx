@@ -21,13 +21,18 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 export default function CCMatchNote() {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const [matchNote,setMatchNote] = useState({win:false, skillDemonstrated:"", skillToImprove:"", note:""});
+    const [matchNote,setMatchNote] = useState({win:false, skillDemonstrated:"", skillToImprove:"", note:"", tournamentId:0 });
     const tournamentTitle = useSelector(store => store.tournament);
     const history = useHistory()
     
     useEffect(()=>{
+
+        setMatchNote({
+            ...matchNote,
+            tournamentId: id
+        })
         console.log(matchNote);
-        console.log(id);
+        
         dispatch({
             type:"FETCH_TOURNAMENT_DETAILS",
             payload: id
@@ -37,7 +42,7 @@ export default function CCMatchNote() {
 
     return (
         <div className='form'>
-            <h2>{tournamentTitle.name} Notes</h2>
+            <h2>{tournamentTitle.name} Note</h2>
             
             <div className='question'>
             <h4>Did You Win The Match?</h4>
@@ -163,7 +168,9 @@ export default function CCMatchNote() {
                 <Button 
                     onClick={(evt)=>{
                         evt.preventDefault();
-                        console.log(matchNote);
+                        dispatch({
+                            type:"ADD_MATCH_NOTE",
+                            payload:matchNote});
                     }}
                     variant="outlined"
                 >
