@@ -18,6 +18,6 @@ export default function* rootSaga() {
     registrationSaga(),
     userSaga(),
     tournamentsSagas(),
-    
+    matchNotesSagas(),
   ]);
 }
