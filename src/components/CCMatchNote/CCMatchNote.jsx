@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { useParams, useHistory } from "react-router-dom"
 import {useSelector, useDispatch} from "react-redux"
 
 //css
@@ -21,10 +21,12 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 export default function CCMatchNote() {
     const {id} = useParams();
     const dispatch = useDispatch();
-    const [matchNote,setMatchNote] = useState({win:false,skillDemonstrated:"",skillToImprove:"",note:""});
+    const [matchNote,setMatchNote] = useState({win:false, skillDemonstrated:"", skillToImprove:"", note:""});
     const tournamentTitle = useSelector(store => store.tournament);
+    const history = useHistory()
     
     useEffect(()=>{
+        console.log(matchNote);
         console.log(id);
         dispatch({
             type:"FETCH_TOURNAMENT_DETAILS",
@@ -46,10 +48,25 @@ export default function CCMatchNote() {
                         direction='row' 
                         spacing={2}
                     >
-                        <Button variant="outlined">
+                        <Button
+                            onClick={()=>{
+                                setMatchNote({
+                                    ...matchNote,
+                                    win: true
+                                })
+                            }} 
+                            variant="outlined"
+                        >
                             YES
                         </Button>
-                        <Button variant="outlined">
+                        <Button
+                            onClick={()=>{
+                                setMatchNote({
+                                    ...matchNote,
+                                    win: false
+                                })
+                            }} 
+                            variant="outlined">
                             NO
                         </Button>
                 </Stack>
@@ -59,18 +76,26 @@ export default function CCMatchNote() {
                 <h4>What Did You Do Well?</h4>
                 <div className="dropdown">
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Did well</InputLabel>
+                        <InputLabel id="did-well">Did well</InputLabel>
                         <Select
+                            value={matchNote.skillDemonstrated}
+                            onChange={(evt)=>{
+                                setMatchNote({
+                                    ...matchNote,
+                                    skillDemonstrated: evt.target.value
+                                })
+                                console.log(matchNote);
+                            }}
                             label="did-not"
                         >
-                        <MenuItem value={'anti-air'}>Anti-Air</MenuItem>
-                        <MenuItem value={'defense'}>Defense</MenuItem>
-                        <MenuItem value={'offense'}>Offense</MenuItem>
-                        <MenuItem value={'combo'}>Combo Execution</MenuItem>
-                        <MenuItem value={'spacing'}>Spacing</MenuItem>
-                        <MenuItem value={'footsies'}>Footsies</MenuItem>
-                        <MenuItem value={'punishes'}>Punishes</MenuItem>
-                        <MenuItem value={'knowledge'}>Match Up Knowledge</MenuItem>
+                        <MenuItem value='anti-air'>Anti-Air</MenuItem>
+                        <MenuItem value='defense'>Defense</MenuItem>
+                        <MenuItem value='offense'>Offense</MenuItem>
+                        <MenuItem value='combo'>Combo Execution</MenuItem>
+                        <MenuItem value='spacing'>Spacing</MenuItem>
+                        <MenuItem value='footsies'>Footsies</MenuItem>
+                        <MenuItem value='punishes'>Punishes</MenuItem>
+                        <MenuItem value='knowledge'>Match Up Knowledge</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
@@ -79,18 +104,27 @@ export default function CCMatchNote() {
                 <h4>What Did Not Go Well?</h4>
                 <div className="dropdown">
                     <FormControl fullWidth>
-                        <InputLabel id="demo-simple-select-label">Didn't Go Well</InputLabel>
+                        <InputLabel id="didnt-well">Didn't Go Well</InputLabel>
                         <Select
+                            value={matchNote.skillToImprove}
+                            onChange={(evt)=>{
+
+                                setMatchNote({
+                                    ...matchNote,
+                                    skillToImprove: evt.target.value
+                                })
+                                console.log(matchNote);
+                            }}
                             label="did-not"
                         >
-                        <MenuItem value={'anti-air'}>Anti-Air</MenuItem>
-                        <MenuItem value={'defense'}>Defense</MenuItem>
-                        <MenuItem value={'offense'}>Offense</MenuItem>
-                        <MenuItem value={'combo execution'}>Combo Execution</MenuItem>
-                        <MenuItem value={'spacing'}>Spacing</MenuItem>
-                        <MenuItem value={'footsies'}>Footsies</MenuItem>
-                        <MenuItem value={'punishes'}>Punishes</MenuItem>
-                        <MenuItem value={'Match up knowledge'}>Match Up Knowledge</MenuItem>
+                        <MenuItem value='anti-air'>Anti-Air</MenuItem>
+                        <MenuItem value='defense'>Defense</MenuItem>
+                        <MenuItem value='offense'>Offense</MenuItem>
+                        <MenuItem value='combo execution'>Combo Execution</MenuItem>
+                        <MenuItem value='spacing'>Spacing</MenuItem>
+                        <MenuItem value='footsies'>Footsies</MenuItem>
+                        <MenuItem value='punishes'>Punishes</MenuItem>
+                        <MenuItem value='Match up knowledge'>Match Up Knowledge</MenuItem>
                         </Select>
                     </FormControl>
                 </div>
@@ -101,7 +135,12 @@ export default function CCMatchNote() {
                 id="filled-multiline-static"
                 label="Additional Notes"
                 multiline
-                
+                onChange={(evt)=>{
+                    setMatchNote({
+                        ...matchNote,
+                        note: evt.target.value
+                    })
+                }}
                 rows={4}
                 variant="filled"
             />
@@ -113,10 +152,21 @@ export default function CCMatchNote() {
                 direction='row' 
                 spacing={2}
             >
-                <Button color="error" variant="outlined">
+                <Button
+                    onClick={()=>{
+                        history.push('/main/')
+                    }} 
+                    color="error" 
+                    variant="outlined">
                     CANCEL
                 </Button>
-                <Button variant="outlined">
+                <Button 
+                    onClick={(evt)=>{
+                        evt.preventDefault();
+                        console.log(matchNote);
+                    }}
+                    variant="outlined"
+                >
                     SUBMIT
                 </Button>
             </Stack>
