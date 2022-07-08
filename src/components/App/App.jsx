@@ -97,6 +97,11 @@ function App() {
             <CCNav/> 
           </ProtectedRoute>
 
+          <ProtectedRoute path="/match-note/:id" exact>
+            <CCHeader/>
+            <CCNav/>
+          </ProtectedRoute>
+
           <Route
             exact
             path="/login"
