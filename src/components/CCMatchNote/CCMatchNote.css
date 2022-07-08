@@ -1,0 +1,20 @@
+.question{
+    text-align: center;
+}
+
+.textField{
+    width: 80%;
+    
+}
+
+.dropdown{
+    width: 80%;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+.button1{
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
