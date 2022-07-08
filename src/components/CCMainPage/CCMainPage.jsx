@@ -44,7 +44,7 @@ export default function () {
     return (
         <div>
             <CCHeader/>
-                <h2 className="feature-tournaments_header" >Feature Tournaments</h2>
+                <h2 className="feature-tournaments_header" >Trending Tournaments</h2>
                 <Swiper
                    
                     spaceBetween={0}

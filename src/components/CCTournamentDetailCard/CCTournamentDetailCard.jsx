@@ -41,6 +41,7 @@ export default function () {
     const {id} = useParams()
     const tournamentDetail = useSelector(store => store.tournament)
     const history = useHistory()
+    
 
     const [expanded, setExpanded] = useState(false);
 
@@ -130,7 +131,22 @@ export default function () {
             >
               Back
             </Button>
-            <Button color="success" variant="contained">Sign up for Tournament</Button>
+            <Button 
+              onClick={()=>{
+                
+                window.location.replace('https://start.gg'+ tournamentDetail.url)
+               
+              }}
+              color="success" 
+              variant="contained"
+            >
+              Sign up for Tournament
+            </Button>
+            <Button
+              variant="contained"
+            >
+              Create Match Note
+            </Button>
           </Stack>
           </div>
             

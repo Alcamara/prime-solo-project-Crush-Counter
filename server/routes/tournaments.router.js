@@ -72,6 +72,11 @@ router.get('/',rejectUnauthenticated,(req, res) => {
     }).catch((err)=>{
         console.error(`${err}`);
     })
+
+
+
+
+    
 });
 
 router.get('/search', rejectUnauthenticated,(req, res) => {
@@ -200,6 +205,47 @@ axios({
 router.post('/bookmark/:id',(req,res)=>{
   const id = req.params.id
   console.log(id);
+  const userId = req.user.id;
+
+
+  const insertQuery = `
+    INSERT INTO tournaments ("tournamentId")
+    VALUES ($1) RETURNING id;
+  `
+
+  const sqlParm = [
+    id,
+  ]
+
+  
+
+  pool.query(insertQuery,sqlParm)
+    .then((dbres)=>{
+      const tournamentId = dbres.rows[0].id
+
+      const insertJun = `
+        INSERT INTO "userMatchNote" ("user_id", "tournament_id")
+        VALUES ($1,$2) RETURNING id;
+      `
+
+      const sqlParam = [
+          userId,
+          tournamentId
+      ]
+
+      pool.query(insertJun,sqlParam)
+        .then((dbres)=>{
+          console.log(dbres.rows[0].id);
+        })
+
+      console.log(sqlParam);
+      
+
+    }).catch((err)=>{
+      console.log(`${err}`);
+    })
 })
+
+
 
 module.exports = router;
