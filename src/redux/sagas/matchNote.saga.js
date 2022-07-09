@@ -20,7 +20,7 @@ function* fetchMatchNotes(){
 
        console.log(res.data);
 
-       yield put({type:"SET_MATCH_NOTES", payload: res})
+       yield put({type:"SET_MATCH_NOTES", payload: res.data})
         
     } catch (error) {
         console.error(`${error}`);
