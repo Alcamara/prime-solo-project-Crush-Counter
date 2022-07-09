@@ -98,6 +98,12 @@ function App() {
             <CCNav/> 
           </ProtectedRoute>
 
+          <ProtectedRoute path="/match-notes" exact>
+            <CCHeader/>
+            
+            <CCNav/>
+          </ProtectedRoute>
+
           <ProtectedRoute path="/match-note/:id" exact>
             <CCHeader/>
             <CCMatchNote/>
