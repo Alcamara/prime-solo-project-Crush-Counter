@@ -171,6 +171,7 @@ export default function CCMatchNote() {
                         dispatch({
                             type:"ADD_MATCH_NOTE",
                             payload:matchNote});
+                            history.push('/main')
                     }}
                     variant="outlined"
                 >

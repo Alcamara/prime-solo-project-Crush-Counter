@@ -37,6 +37,104 @@ router.post('/',rejectUnauthenticated,(req,res)=>{
     
 })
 
+router.get('/',rejectUnauthenticated,(req,res)=>{
+
+    const userId = req.user.id
+
+    const getQuery = `
+        SELECT "tournamentId", "win", "skillDemonstrated", "skillToImprove", "note" FROM "matchNote"
+        JOIN "user" ON "user".id = "matchNote"."userId"
+        WHERE "matchNote"."userId" = ${userId};
+    `
+
+    pool.query(getQuery)
+        .then((dbRes)=>{
+            ;
+         const tournamentIds =   dbRes.rows.map(evt =>(
+                evt.tournamentId
+            ))
+
+            console.log(tournamentIds);
+
+            console.log("value:" ,tournamentIds[1]);
+
+            console.log('index of: ',tournamentIds.indexOf(tournamentIds[4],4) );
+
+            
+
+
+            let query = { "query": ``};
+
+            for(let i = 0; i < tournamentIds.length; i++){
+            if(i === 0){
+                query["query"] += `query{
+                t${i+1}: tournament(id:${tournamentIds[i]}){
+                id
+                name
+                images{
+                    url
+                  }
+                },
+                ` 
+            }else if(i === tournamentIds.length - 1){
+                query["query"] += `t${i+1}: tournament(id:${tournamentIds[i]}){
+                    id
+                    name
+                    images{
+                        url
+                      }
+                }
+            }
+                `
+            }else{
+                query["query"] += `t${i+1}: tournament(id:${tournamentIds[i]}){
+                id
+                name
+                images{
+                    url
+                  }
+                },
+                `
+            }
+                
+            }
+
+            const endpoint = "https://api.start.gg/gql/alpha";
+
+            const headers = {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + process.env.STARTGG_API_KEY
+            };
+
+            axios({
+                url:endpoint,
+                method:"POST",
+                headers:headers,
+                data: query
+              }).then((resp)=>{
+                
+                let queryArr = []
+                let num = 1;
+
+                for(let i = 0; i < Object.keys(resp.data.data).length; i++){
+                    queryArr.push(resp.data.data["t"+num])
+                    ++num
+                    console.log(num);
+                }
+
+                console.log(queryArr);
+                res.send({apiQueryResults:queryArr, dbResults:dbRes.rows})
+              }).catch((err)=>{
+                console.error("axios failed",`${err}`);
+              })
+
+
+            
+        }).catch((err)=>{
+            console.error(`${err}`);
+        })
+})
+
 
 
 
