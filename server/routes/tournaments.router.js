@@ -36,7 +36,7 @@ router.get('/',rejectUnauthenticated,(req, res) => {
               }
               past:false
               upcoming: true
-              videogameIds: [7,10055]
+              videogameIds: [7,10055,33990]
             }
           }){
             nodes{
