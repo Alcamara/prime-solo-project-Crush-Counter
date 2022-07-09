@@ -33,10 +33,7 @@ export default function CCMatchNote() {
         })
         console.log(matchNote);
         
-        dispatch({
-            type:"FETCH_TOURNAMENT_DETAILS",
-            payload: id
-        })
+       
     },[id])
 
 

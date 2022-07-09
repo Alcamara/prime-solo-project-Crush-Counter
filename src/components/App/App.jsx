@@ -26,6 +26,7 @@ import CCNav from '../CCNav/CCNav';
 import CCHeader from '../CCHeader/CCHeader';
 import CCTournamentSearch from '../CCTournamentSearch/CCTournamentSearch';
 import CCMatchNote from '../CCMatchNote/CCMatchNote';
+import CCMatchNotes from '../CCMatchNotes/CCMatchNotes';
 
 import './App.css';
 
@@ -100,7 +101,7 @@ function App() {
 
           <ProtectedRoute path="/match-notes" exact>
             <CCHeader/>
-            
+            <CCMatchNotes/>
             <CCNav/>
           </ProtectedRoute>
 
