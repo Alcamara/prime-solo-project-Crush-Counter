@@ -13,13 +13,26 @@ function* addMatchNote(action){
 }
 
 
+function* fetchMatchNotes(){
+    try {
 
+       const res = yield axios.get('/api/match-notes')
+
+       console.log(res.data);
+
+       yield put({type:"SET_MATCH_NOTES", payload: res})
+        
+    } catch (error) {
+        console.error(`${error}`);
+    }
+}
 
 
 
 
 function* matchNotesSagas(){
     yield takeLatest("ADD_MATCH_NOTE", addMatchNote)
+    yield takeLatest("FETCH_MATCH_NOTES", fetchMatchNotes)
     
 }
 
