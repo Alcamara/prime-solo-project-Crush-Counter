@@ -44,7 +44,7 @@ export default function CCMatchNoteList(){
                 { matchNotes.dbResults &&
                     matchNotes.dbResults.map((note, index) =>(
                         <>
-                        <CCMatchNoteListItem key={note.id} matchNotes={matchNotes.apiQueryResults[index]} note={note}/>
+                        <CCMatchNoteListItem key={note} matchNotes={matchNotes.apiQueryResults[index]} note={note}/>
                         <ListDivider inset="gutter"/>
                         </>
                     ))

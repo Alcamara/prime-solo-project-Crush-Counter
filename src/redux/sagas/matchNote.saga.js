@@ -27,12 +27,26 @@ function* fetchMatchNotes(){
     }
 }
 
+function* deleteMatchNote(action) {
+    console.log('in saga', action.payload);
+
+    
+
+    try {
+        yield axios.delete('/api/match-notes/'+action.payload)
+        
+    } catch (error) {
+        console.error(`${error}`);
+    }
+}
+
 
 
 
 function* matchNotesSagas(){
     yield takeLatest("ADD_MATCH_NOTE", addMatchNote)
     yield takeLatest("FETCH_MATCH_NOTES", fetchMatchNotes)
+    yield takeLatest("DELETE_MATCH-NOTE", deleteMatchNote)
     
 }
 
