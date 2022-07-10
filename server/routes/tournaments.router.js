@@ -96,7 +96,7 @@ router.get('/search', rejectUnauthenticated,(req, res) => {
             perPage:300
             page:1
             filter:{
-              videogameIds: [7,10055]
+              videogameIds: [7,10055,33990]
               afterDate: 1657201146
               past:false
               upcoming: true

@@ -135,6 +135,26 @@ router.get('/',rejectUnauthenticated,(req,res)=>{
         })
 })
 
+router.delete('/:id',rejectUnauthenticated,(req,res)=>{
+    const id = req.params.id
+
+    const deleteQuery = `
+        DELETE FROM "matchNote" 
+        WHERE "id" = $1 ;
+    `
+
+    const sqlParam = [
+        id
+    ]
+
+    pool.query(deleteQuery,sqlParam)
+        .then(()=>{
+            res.sendStatus(200)
+        }).catch((err)=>{
+            console.error(`${err}`);
+        })
+})
+
 
 
 
