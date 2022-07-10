@@ -79,7 +79,7 @@ router.post('/savedMatchNote/:id',rejectUnauthenticated,(req,res)=>{
                 data: graphqlQuery
               }).then((resp)=>{
                 console.log('here:',resp.data.data.tournament.name);
-                res.send({name: resp.data.data.tournament.name, dbResult: dbRes.rows})
+                res.send({name: resp.data.data.tournament.name, dbResult: dbRes.rows[0]})
               }).catch((err)=>{
                 console.error("axios failed",`${err}`);
               })

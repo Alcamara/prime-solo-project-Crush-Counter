@@ -17,10 +17,13 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 
 export default function CCSavedMatchNote() {
+    const savedMatchNote = useSelector(store => store.savedMatchNote);
+    const tournamentName = savedMatchNote.name
+    const note = {...savedMatchNote.dbResult};
     const {id} = useParams();
     const dispatch = useDispatch();
     const [matchNote,setMatchNote] = useState({win:false, skillDemonstrated:"", skillToImprove:"", note:"", tournamentId:0 });
-    const tournamentTitle = useSelector(store => store.tournament);
+    
     const history = useHistory()
     
     useEffect(()=>{
@@ -29,7 +32,10 @@ export default function CCSavedMatchNote() {
             ...matchNote,
             tournamentId: id
         })
-        console.log(matchNote);
+        dispatch({
+            type:"FETCH_SAVED_MATCH_NOTE",
+            payload: id
+          })
         
        
     },[id])
@@ -37,7 +43,7 @@ export default function CCSavedMatchNote() {
 
     return (
         <div className='form'>
-            <h2>{tournamentTitle.name} Note</h2>
+            <h2>{tournamentName} Note</h2>
             
             <div className='question'>
             <h4>Did You Win The Match?</h4>
@@ -77,8 +83,8 @@ export default function CCSavedMatchNote() {
                 <div className="dropdown">
                     <FormControl fullWidth>
                         <InputLabel id="did-well">Did well</InputLabel>
-                        <Select
-                            value={matchNote.skillDemonstrated}
+                      { note.skillDemonstrated && <Select
+                            value={note.skillDemonstrated }
                             onChange={(evt)=>{
                                 setMatchNote({
                                     ...matchNote,
@@ -96,7 +102,7 @@ export default function CCSavedMatchNote() {
                         <MenuItem value='footsies'>Footsies</MenuItem>
                         <MenuItem value='punishes'>Punishes</MenuItem>
                         <MenuItem value='knowledge'>Match Up Knowledge</MenuItem>
-                        </Select>
+                        </Select> }
                     </FormControl>
                 </div>
             </div>
@@ -105,8 +111,8 @@ export default function CCSavedMatchNote() {
                 <div className="dropdown">
                     <FormControl fullWidth>
                         <InputLabel id="didnt-well">Didn't Go Well</InputLabel>
-                        <Select
-                            value={matchNote.skillToImprove}
+                     {  note.skillToImprove  &&<Select
+                            value={note.skillToImprove}
                             onChange={(evt)=>{
 
                                 setMatchNote({
@@ -125,12 +131,13 @@ export default function CCSavedMatchNote() {
                         <MenuItem value='footsies'>Footsies</MenuItem>
                         <MenuItem value='punishes'>Punishes</MenuItem>
                         <MenuItem value='Match up knowledge'>Match Up Knowledge</MenuItem>
-                        </Select>
+                        </Select>}
                     </FormControl>
                 </div>
             </div>
             <div className='question'>
-            <TextField
+          { note.note && <TextField
+                value={note.note}
                 className="textField"
                 id="filled-multiline-static"
                 label="Additional Notes"
@@ -143,7 +150,7 @@ export default function CCSavedMatchNote() {
                 }}
                 rows={4}
                 variant="filled"
-            />
+            />}
             </div>
             <div className="button1">
             <Stack 
