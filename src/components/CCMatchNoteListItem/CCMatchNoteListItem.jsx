@@ -73,7 +73,7 @@ export default function CCMatchNoteListItem({note,matchNotes}){
               <Button 
                 onClick={()=>{
                   dispatch({
-                    type:"DELETE_MATCH-NOTE",
+                    type:"DELETE_MATCH_NOTE",
                     payload: note.id
                   })
                   handleClose()

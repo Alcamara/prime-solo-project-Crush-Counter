@@ -34,6 +34,8 @@ function* deleteMatchNote(action) {
 
     try {
         yield axios.delete('/api/match-notes/'+action.payload)
+
+        yield put({ type:"FETCH_MATCH_NOTES" })
         
     } catch (error) {
         console.error(`${error}`);
@@ -46,7 +48,7 @@ function* deleteMatchNote(action) {
 function* matchNotesSagas(){
     yield takeLatest("ADD_MATCH_NOTE", addMatchNote)
     yield takeLatest("FETCH_MATCH_NOTES", fetchMatchNotes)
-    yield takeLatest("DELETE_MATCH-NOTE", deleteMatchNote)
+    yield takeLatest("DELETE_MATCH_NOTE", deleteMatchNote)
     
 }
 
