@@ -42,7 +42,7 @@ export default function () {
     },[])
 
     return (
-        <div>
+        <div className="Main">
             <CCHeader/>
                 <h2 className="feature-tournaments_header" >Trending Tournaments</h2>
                 <Swiper

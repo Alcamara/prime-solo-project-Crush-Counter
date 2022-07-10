@@ -142,6 +142,9 @@ export default function () {
               Sign up for Tournament
             </Button>
             <Button
+              onClick={()=>{
+                history.push('/match-note/'+tournamentDetail.id)
+              }}
               variant="contained"
             >
               Create Match Note
