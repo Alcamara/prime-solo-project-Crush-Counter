@@ -22,7 +22,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 export default function CCMatchNoteListItem({note,matchNotes}){
   const dispatch = useDispatch()
   const history = useHistory()
-  const {id} = useParams()
+  
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -38,10 +38,6 @@ export default function CCMatchNoteListItem({note,matchNotes}){
     return (
       
       <ListItem
-        onClick={()=>{
-          console.log('it works');
-          history.push('/match-note/saved/'+note.id)
-      }} 
         endAction={
 
           <IconButton
@@ -92,7 +88,16 @@ export default function CCMatchNoteListItem({note,matchNotes}){
       <ListItemDecorator sx={{ alignSelf: 'flex-start' }}>
        { matchNotes && matchNotes.images && matchNotes.images.length >= 1 && <Avatar src={matchNotes.images[1].url} /> }
       </ListItemDecorator>
-      <ListItemContent>
+      <ListItemContent
+        onClick={()=>{
+          console.log('it works');
+          history.push('/match-note/saved/'+note.id)
+          dispatch({
+            type:"FETCH_SAVED_MATCH_NOTE",
+            payload: note.id
+          })
+      }} 
+      >
         <Typography noWrap>{matchNotes.name}</Typography>
         <Typography noWrap>05/22/1985</Typography>
         <Typography level="body2" noWrap>

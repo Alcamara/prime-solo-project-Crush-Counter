@@ -6,9 +6,6 @@ import {useSelector, useDispatch} from "react-redux"
 import './CCSavedMatchNote.css'
 
 //MUI
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
 import { Button } from "@material-ui/core";
 import { Stack } from "@mui/material";

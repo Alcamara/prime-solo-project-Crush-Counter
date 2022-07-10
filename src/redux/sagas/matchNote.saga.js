@@ -1,7 +1,6 @@
 import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
-
 function* addMatchNote(action){
     console.log('in match note', action.payload);
 
@@ -11,7 +10,6 @@ function* addMatchNote(action){
         
     }
 }
-
 
 function* fetchMatchNotes(){
     try {
@@ -30,8 +28,6 @@ function* fetchMatchNotes(){
 function* deleteMatchNote(action) {
     console.log('in saga', action.payload);
 
-    
-
     try {
         yield axios.delete('/api/match-notes/'+action.payload)
 
@@ -42,17 +38,12 @@ function* deleteMatchNote(action) {
     }
 }
 
-
-
-
 function* matchNotesSagas(){
     yield takeLatest("ADD_MATCH_NOTE", addMatchNote)
     yield takeLatest("FETCH_MATCH_NOTES", fetchMatchNotes)
     yield takeLatest("DELETE_MATCH_NOTE", deleteMatchNote)
     
 }
-
-
 
 
 export default matchNotesSagas;
