@@ -26,6 +26,7 @@ import CCNav from '../CCNav/CCNav';
 import CCHeader from '../CCHeader/CCHeader';
 import CCTournamentSearch from '../CCTournamentSearch/CCTournamentSearch';
 import CCMatchNote from '../CCMatchNote/CCMatchNote';
+import CCSavedMatchNote from '../CCSavedMatchNote/CCSavedMatchNote';
 import CCMatchNoteList from '../CCMatchNoteList/CCMatchNoteList';
 
 import './App.css';
@@ -108,6 +109,12 @@ function App() {
           <ProtectedRoute path="/match-note/:id" exact>
             <CCHeader/>
             <CCMatchNote/>
+            <CCNav/>
+          </ProtectedRoute>
+
+          <ProtectedRoute path="/match-note/saved/:id" exact>
+            <CCHeader/>
+            <CCSavedMatchNote/>
             <CCNav/>
           </ProtectedRoute>
 

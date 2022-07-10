@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
+import { useParams, useHistory } from 'react-router-dom';
 
 import Avatar from '@mui/joy/Avatar';
 import List from '@mui/joy/List';
@@ -21,6 +21,8 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 export default function CCMatchNoteListItem({note,matchNotes}){
   const dispatch = useDispatch()
+  const history = useHistory()
+  const {id} = useParams()
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -36,6 +38,10 @@ export default function CCMatchNoteListItem({note,matchNotes}){
     return (
       
       <ListItem
+        onClick={()=>{
+          console.log('it works');
+          history.push('/match-note/saved/'+note.id)
+      }} 
         endAction={
 
           <IconButton
