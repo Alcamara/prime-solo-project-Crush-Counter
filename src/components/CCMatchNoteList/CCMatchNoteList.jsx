@@ -36,22 +36,22 @@ export default function CCMatchNoteList(){
             >
               Match Notes
             </Typography>
-            <Sheet variant="outlined" sx={{ borderRadius: 'sm' }}>
+            
             <List
               aria-labelledby="ellipsis-list-demo"
-              sx={{ '--List-decorator-width': '40px' }}
+              sx={{ '--List-decorator-width': '50px' }}
             >
                 { matchNotes.dbResults &&
                     matchNotes.dbResults.map((note, index) =>(
                         <>
-                        <CCMatchNoteListItem key={index} matchNotes={matchNotes.apiQueryResults[index]} note={note}/>
+                        <CCMatchNoteListItem key={note.id} matchNotes={matchNotes.apiQueryResults[index]} note={note}/>
                         <ListDivider inset="gutter"/>
                         </>
                     ))
                 }
                 
             </List>
-            </Sheet>
+           
         </div>
     )
 }

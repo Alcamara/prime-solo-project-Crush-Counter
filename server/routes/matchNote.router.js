@@ -42,7 +42,7 @@ router.get('/',rejectUnauthenticated,(req,res)=>{
     const userId = req.user.id
 
     const getQuery = `
-        SELECT "tournamentId", "win", "skillDemonstrated", "skillToImprove", "note" FROM "matchNote"
+        SELECT "matchNote".id, "tournamentId", "win", "skillDemonstrated", "skillToImprove", "note" FROM "matchNote"
         JOIN "user" ON "user".id = "matchNote"."userId"
         WHERE "matchNote"."userId" = ${userId};
     `

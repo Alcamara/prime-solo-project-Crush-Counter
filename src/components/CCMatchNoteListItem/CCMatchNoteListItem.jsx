@@ -25,6 +25,7 @@ export default function CCMatchNoteListItem({note,matchNotes}){
       </ListItemDecorator>
       <ListItemContent>
         <Typography noWrap>{matchNotes.name}</Typography>
+        <Typography noWrap>05/22/1985</Typography>
         <Typography level="body2" noWrap>
           {note.note}
         </Typography>
