@@ -11,3 +11,14 @@ export const matchNotes = (state={}, action) =>{
 
     
 } 
+
+export const savedMatchNote = (state={}, action)=>{
+    switch (action.type) {
+        case 'SET_SAVED_MATCH_NOTE':
+            
+            return action.payload;
+    
+        default:
+            return state;
+    }
+}

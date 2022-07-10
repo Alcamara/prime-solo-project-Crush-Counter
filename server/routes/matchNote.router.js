@@ -40,6 +40,55 @@ router.post('/',rejectUnauthenticated,(req,res)=>{
 router.post('/savedMatchNote/:id',rejectUnauthenticated,(req,res)=>{
     const id = req.params.id
     console.log(id);
+
+    const fetchQuery = `
+        SELECT "matchNote".id, "tournamentId", "win", "skillDemonstrated", "skillToImprove", "note" FROM "matchNote"
+        JOIN "user" ON "user".id = "matchNote"."userId"
+        WHERE "matchNote".id = $1;
+    `
+    const sqlParam = [
+        id
+    ]
+
+    pool.query(fetchQuery,sqlParam)
+        .then((dbRes)=>{
+            const id = dbRes.rows[0].tournamentId;
+            console.log('tournamentID', id);
+
+            const endpoint = "https://api.start.gg/gql/alpha";
+
+            const headers = {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + process.env.STARTGG_API_KEY
+            };
+
+            const graphqlQuery = {
+                "query": `
+                    query{
+                        tournament(id:429592){
+                        name
+                    }
+                    }
+                `,
+            };
+
+            axios({
+                url:endpoint,
+                method:"POST",
+                headers:headers,
+                data: graphqlQuery
+              }).then((resp)=>{
+                console.log('here:',resp.data.data.tournament.name);
+                res.send({name: resp.data.data.tournament.name, dbResult: dbRes.rows})
+              }).catch((err)=>{
+                console.error("axios failed",`${err}`);
+              })
+
+        }).catch((err)=>{
+            console.error(`${err}`);
+        })
+
+
 })
 
 router.get('/',rejectUnauthenticated,(req,res)=>{

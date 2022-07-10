@@ -43,7 +43,7 @@ function* fetchSavedMatchNotes(action){
     try {
 
         const savedNote = yield axios.post('/api/match-notes/savedMatchNote/'+action.payload)
-        
+        yield put({type:'SET_SAVED_MATCH_NOTE', payload: savedNote.data});
     } catch (error) {
         console.error(`${error}`);
     }

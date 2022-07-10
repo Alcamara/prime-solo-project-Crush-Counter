@@ -3,7 +3,7 @@ import errors from './errors.reducer';
 import user from './user.reducer';
 
 import { tournament, tournaments,tournamentSearch } from './tournaments.reducer';
-import { matchNotes } from './matchNotes.reducer';
+import { matchNotes,savedMatchNote } from './matchNotes.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -16,7 +16,8 @@ const rootReducer = combineReducers({
   tournaments,// constains list of tournaments
   tournament,
   tournamentSearch,
-  matchNotes //
+  matchNotes, //
+  savedMatchNote,
 });
 
 export default rootReducer;
