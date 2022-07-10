@@ -147,7 +147,12 @@ router.delete('/:id',rejectUnauthenticated,(req,res)=>{
         id
     ]
 
-    pool.
+    pool.query(deleteQuery,sqlParam)
+        .then(()=>{
+            res.sendStatus(200)
+        }).catch((err)=>{
+            console.error(`${err}`);
+        })
 })
 
 
