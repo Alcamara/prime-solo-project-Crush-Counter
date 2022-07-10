@@ -37,6 +37,11 @@ router.post('/',rejectUnauthenticated,(req,res)=>{
     
 })
 
+router.post('/savedMatchNote/:id',rejectUnauthenticated,(req,res)=>{
+    const id = req.params.id
+    console.log(id);
+})
+
 router.get('/',rejectUnauthenticated,(req,res)=>{
 
     const userId = req.user.id

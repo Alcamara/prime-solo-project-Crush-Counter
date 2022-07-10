@@ -38,11 +38,22 @@ function* deleteMatchNote(action) {
     }
 }
 
+function* fetchSavedMatchNotes(action){
+    console.log('fetchSavedMatchNotes');
+    try {
+
+        const savedNote = yield axios.post('/api/match-notes/savedMatchNote/'+action.payload)
+        
+    } catch (error) {
+        console.error(`${error}`);
+    }
+}
+
 function* matchNotesSagas(){
     yield takeLatest("ADD_MATCH_NOTE", addMatchNote)
     yield takeLatest("FETCH_MATCH_NOTES", fetchMatchNotes)
     yield takeLatest("DELETE_MATCH_NOTE", deleteMatchNote)
-    
+    yield takeLatest("FETCH_SAVED_MATCH_NOTE", fetchSavedMatchNotes)
 }
 
 
