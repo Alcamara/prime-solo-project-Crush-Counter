@@ -104,7 +104,9 @@ export default function CCHeader (){
                     </ListItemButton>
                 </ListItem>
                 <ListItem>
-                    <ListItemButton>
+                    <ListItemButton
+                        onClick={() => dispatch({ type: 'LOGOUT' })}
+                    >
                         <ListItemIcon>
                             <LogoutIcon/>
                         </ListItemIcon>
