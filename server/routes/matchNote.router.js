@@ -216,7 +216,7 @@ router.put('/savedMatchNote/:id',(req,res)=>{
     const updateQuery = `
         UPDATE "matchNote"
         SET "win" = $1, "skillDemonstrated" = $2, "skillToImprove" = $3, "note" = $4
-        WHERE "matchNote".id = ${id} ;
+        WHERE "matchNote".id = ${req.body.id} ;
     `
 
     const sqlParam = [

@@ -253,7 +253,7 @@ export default function CCSavedMatchNote() {
                             evt.preventDefault();
                             dispatch({
                                 type:"UPDATE_MATCH_NOTE",
-                                payload: matchNote});
+                                payload: note});
                                 history.push('/main')       
                         }}
                         variant="outlined"
