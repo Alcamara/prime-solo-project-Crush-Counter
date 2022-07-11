@@ -25,15 +25,9 @@ export default function CCSavedMatchNote() {
 
     const [matchNote,setMatchNote] = useState({win:false, skillDemonstrated:"", skillToImprove:"", note:"", tournamentId:0 });
     const [buttonMode,setButtonMode] = useState(false);
-    const [fields,enableFields] = useState('disable')
     
-    function classNameToggle(){
-        if(buttonMode){
-            setFields('enable')
-        }
-        console.log(fields);
-        console.log(fields);
-    }
+    
+   
 
     const history = useHistory()
     
@@ -96,8 +90,7 @@ export default function CCSavedMatchNote() {
                   { (buttonMode)? <FormControl fullWidth > 
                         <InputLabel id="did-well">Did well</InputLabel>
                       { note.skillDemonstrated && <Select
-                            className={fields}
-                            value={note.skillDemonstrated }
+                            value={matchNote.skillDemonstrated}
                             onChange={(evt)=>{
                                 setMatchNote({
                                     ...matchNote,
@@ -153,7 +146,7 @@ export default function CCSavedMatchNote() {
                     <FormControl fullWidth >
                         <InputLabel id="didnt-well">Didn't Go Well</InputLabel>
                     {  note.skillToImprove  &&<Select
-                            value={note.skillToImprove}
+                            value={matchNote.skillToImprove}
                             onChange={(evt)=>{
 
                                 setMatchNote({
@@ -204,7 +197,7 @@ export default function CCSavedMatchNote() {
             <div className='question'>
            {(buttonMode)?
            <TextField
-                value={note.note}
+                value={matchNote.note}
                 className="textField"
                 multiline
                 onChange={(evt)=>{
@@ -247,7 +240,7 @@ export default function CCSavedMatchNote() {
                     onClick={()=>{
                         history.goBack()
                     }} 
-                    color="error" 
+                    
                     variant="outlined">
                     CANCEL
                 </Button>
@@ -257,8 +250,8 @@ export default function CCSavedMatchNote() {
                             evt.preventDefault();
                             dispatch({
                                 type:"UPDATE_MATCH_NOTE",
-                                payload:matchNote});
-                                history.push('/main')
+                                payload: matchNote});
+                                history.push('/main')       
                         }}
                         variant="outlined"
                     >
@@ -267,7 +260,7 @@ export default function CCSavedMatchNote() {
                     <Button
                         onClick={()=>{
                             setButtonMode(true)
-                            classNameToggle()
+                            
                         }}
                         variant='outlined'
                     >

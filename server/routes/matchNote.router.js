@@ -209,7 +209,31 @@ router.delete('/:id',rejectUnauthenticated,(req,res)=>{
         })
 })
 
+router.put('/savedMatchNote/:id',(req,res)=>{
+    const id = req.params.id
+    console.log('in put',id, 'payload', req.body );
 
+    const updateQuery = `
+        UPDATE "matchNote"
+        SET "win" = $1, "skillDemonstrated" = $2, "skillToImprove" = $3, "note" = $4
+        WHERE "matchNote".id = ${id} ;
+    `
+
+    const sqlParam = [
+        req.body.win,
+        req.body.skillDemonstrated,
+        req.body.skillToImprove,
+        req.body.note
+    ]
+
+    pool.query(updateQuery,sqlParam)
+        .then(()=>{
+            res.sendStatus(200)
+        }).catch((err)=>{
+            console.error(`${err}`);
+        })
+
+})
 
 
 module.exports = router;
