@@ -2,5 +2,9 @@ h2{
     text-align: center;
 }
 .results{
-    overflow: scroll;
+    
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    justify-content: center;
 }

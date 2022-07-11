@@ -6,6 +6,8 @@ import Chip from '@mui/joy/Chip';
 import Typography from '@mui/joy/Typography';
 import { useHistory } from 'react-router-dom';
 
+//CSS
+import './CCSearchItem.css'
 
 export default function CCSearchItem({tournament}){
 
@@ -13,7 +15,10 @@ export default function CCSearchItem({tournament}){
     const history = new useHistory()
     const isOnline = tournament.isOnline ? "online" : "offline";
     return(
-        <div>{ tournament && tournament.images && tournament.images.length >= 1 &&
+        <div
+            className='card'
+        >
+            { tournament && tournament.images && tournament.images.length >= 1 &&
             <Card
             onClick={()=>{
                 history.push('/tournamentDetail/'+tournament.id)
