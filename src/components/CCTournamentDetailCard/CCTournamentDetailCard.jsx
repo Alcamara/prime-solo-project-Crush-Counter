@@ -40,6 +40,7 @@ export default function () {
     const dispatch = useDispatch()
     const {id} = useParams()
     const tournamentDetail = useSelector(store => store.tournament)
+    const startDate = new Date(tournamentDetail.startAt *1000)
     const history = useHistory()
     
 
@@ -81,7 +82,7 @@ export default function () {
                 </IconButton>
               }
               title={tournamentDetail.name}
-              subheader="September 14, 2016"
+              subheader={`${startDate.getMonth()+1}/${startDate.getDate()}/${startDate.getFullYear()}`}
             />
             <CardMedia
               component="img"
