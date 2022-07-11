@@ -22,8 +22,19 @@ export default function CCSavedMatchNote() {
     const note = {...savedMatchNote.dbResult};
     const {id} = useParams();
     const dispatch = useDispatch();
+
     const [matchNote,setMatchNote] = useState({win:false, skillDemonstrated:"", skillToImprove:"", note:"", tournamentId:0 });
+    const [buttonMode,setButtonMode] = useState(false);
+    const [fields,enableFields] = useState('disable')
     
+    function classNameToggle(){
+        if(buttonMode){
+            setFields('enable')
+        }
+        console.log(fields);
+        console.log(fields);
+    }
+
     const history = useHistory()
     
     useEffect(()=>{
@@ -81,16 +92,18 @@ export default function CCSavedMatchNote() {
             <div className='question'>
                 <h4>What Did You Do Well?</h4>
                 <div className="dropdown">
-                    <FormControl fullWidth disabled>
+                    {/* if edit button is pushed dropdown enable */}
+                  { (buttonMode)? <FormControl fullWidth > 
                         <InputLabel id="did-well">Did well</InputLabel>
                       { note.skillDemonstrated && <Select
+                            className={fields}
                             value={note.skillDemonstrated }
                             onChange={(evt)=>{
                                 setMatchNote({
                                     ...matchNote,
                                     skillDemonstrated: evt.target.value
                                 })
-                                console.log(matchNote);
+                                
                             }}
                             label="did-not"
                         >
@@ -104,12 +117,65 @@ export default function CCSavedMatchNote() {
                         <MenuItem value='knowledge'>Match Up Knowledge</MenuItem>
                         </Select> }
                     </FormControl>
+                        :
+                    <FormControl fullWidth disabled> 
+                    <InputLabel id="did-well">Did well</InputLabel>
+                  { note.skillDemonstrated && <Select
+                        
+                        value={note.skillDemonstrated }
+                        onChange={(evt)=>{
+                            setMatchNote({
+                                ...matchNote,
+                                skillDemonstrated: evt.target.value
+                            })
+                            
+                        }}
+                        label="did-not"
+                    >
+                    <MenuItem value='anti-air'>Anti-Air</MenuItem>
+                    <MenuItem value='defense'>Defense</MenuItem>
+                    <MenuItem value='offense'>Offense</MenuItem>
+                    <MenuItem value='combo'>Combo Execution</MenuItem>
+                    <MenuItem value='spacing'>Spacing</MenuItem>
+                    <MenuItem value='footsies'>Footsies</MenuItem>
+                    <MenuItem value='punishes'>Punishes</MenuItem>
+                    <MenuItem value='knowledge'>Match Up Knowledge</MenuItem>
+                    </Select> }
+                </FormControl>
+                    }
+                    {/* end */}
                 </div>
             </div>
             <div className='question'>
                 <h4>What Did Not Go Well?</h4>
                 <div className="dropdown">
-                    <FormControl fullWidth disabled>
+                   { (buttonMode)?
+                    <FormControl fullWidth >
+                        <InputLabel id="didnt-well">Didn't Go Well</InputLabel>
+                    {  note.skillToImprove  &&<Select
+                            value={note.skillToImprove}
+                            onChange={(evt)=>{
+
+                                setMatchNote({
+                                    ...matchNote,
+                                    skillToImprove: evt.target.value
+                                })
+                                console.log(matchNote);
+                            }}
+                            label="did-not"
+                        >
+                        <MenuItem value='anti-air'>Anti-Air</MenuItem>
+                        <MenuItem value='defense'>Defense</MenuItem>
+                        <MenuItem value='offense'>Offense</MenuItem>
+                        <MenuItem value='combo execution'>Combo Execution</MenuItem>
+                        <MenuItem value='spacing'>Spacing</MenuItem>
+                        <MenuItem value='footsies'>Footsies</MenuItem>
+                        <MenuItem value='punishes'>Punishes</MenuItem>
+                        <MenuItem value='Match up knowledge'>Match Up Knowledge</MenuItem>
+                        </Select>}
+                    </FormControl>
+                    :
+                   <FormControl fullWidth disabled>
                         <InputLabel id="didnt-well">Didn't Go Well</InputLabel>
                      {  note.skillToImprove  &&<Select
                             value={note.skillToImprove}
@@ -132,15 +198,14 @@ export default function CCSavedMatchNote() {
                         <MenuItem value='punishes'>Punishes</MenuItem>
                         <MenuItem value='Match up knowledge'>Match Up Knowledge</MenuItem>
                         </Select>}
-                    </FormControl>
+                    </FormControl>}
                 </div>
             </div>
             <div className='question'>
-          { note.note && <TextField
+           {(buttonMode)?
+           <TextField
                 value={note.note}
                 className="textField"
-                id="filled-multiline-static"
-                label="Additional Notes"
                 multiline
                 onChange={(evt)=>{
                     setMatchNote({
@@ -150,7 +215,26 @@ export default function CCSavedMatchNote() {
                 }}
                 rows={4}
                 variant="filled"
-            />}
+                
+            />
+                :
+                <TextField
+                    value={note.note}
+                    className="textField"
+                    id="filled-multiline-static"
+                    multiline
+                    onChange={(evt)=>{
+                        setMatchNote({
+                            ...matchNote,
+                            note: evt.target.value
+                        })
+                    }}
+                    rows={4}
+                    variant="filled"
+                    disabled
+                />
+
+           }
             </div>
             <div className="button1">
             <Stack 
@@ -161,24 +245,35 @@ export default function CCSavedMatchNote() {
             >
                 <Button
                     onClick={()=>{
-                        history.push('/main/')
+                        history.goBack()
                     }} 
                     color="error" 
                     variant="outlined">
                     CANCEL
                 </Button>
-                <Button 
-                    onClick={(evt)=>{
-                        evt.preventDefault();
-                        dispatch({
-                            type:"UPDATE_MATCH_NOTE",
-                            payload:matchNote});
-                            history.push('/main')
-                    }}
-                    variant="outlined"
-                >
-                    Update
-                </Button>
+                { (buttonMode)?
+                    <Button 
+                        onClick={(evt)=>{
+                            evt.preventDefault();
+                            dispatch({
+                                type:"UPDATE_MATCH_NOTE",
+                                payload:matchNote});
+                                history.push('/main')
+                        }}
+                        variant="outlined"
+                    >
+                        UPDATE
+                    </Button>:
+                    <Button
+                        onClick={()=>{
+                            setButtonMode(true)
+                            classNameToggle()
+                        }}
+                        variant='outlined'
+                    >
+                        Edit
+                    </Button>
+                }
             </Stack>
             
             </div>

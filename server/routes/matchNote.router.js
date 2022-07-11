@@ -65,7 +65,7 @@ router.post('/savedMatchNote/:id',rejectUnauthenticated,(req,res)=>{
             const graphqlQuery = {
                 "query": `
                     query{
-                        tournament(id:429592){
+                        tournament(id:${id}){
                         name
                     }
                     }
