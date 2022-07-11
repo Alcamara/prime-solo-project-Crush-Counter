@@ -11,7 +11,7 @@ import Box from '@mui/joy/Box';
 
 //carousel
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { FreeMode } from "swiper";
+import { FreeMode, Navigation, Pagination, Grid } from "swiper";
 
 // Import Swiper styles
 import 'swiper/css';
@@ -19,6 +19,9 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import 'swiper/css/free-mode'
+import 'swiper/css/navigation'
+import 'swiper/css/pagination'
+import 'swiper/css/grid'
 
 
 export default function () {
@@ -31,15 +34,23 @@ export default function () {
 
    const history = useHistory()
 
-   if(tournaments){
-    console.log(tournaments);
-    console.log(tournaments[0]);
-    
-   }
+   
+//    let lat;
+//    let long;
+
+//    navigator.geolocation.getCurrentPosition(function(position){
+//      lat = position.coords.latitude;
+//      long = position.coords.longitude;
+//      console.log('lat:', lat, 'long:', long );
+//    })
+
+   
     
     useEffect(()=>{
+        
         dispatch({
-            type: 'FETCH_TOURNAMENTS_DATA'
+            type: 'FETCH_TOURNAMENTS_DATA',
+            
         })
     },[])
 
@@ -48,18 +59,19 @@ export default function () {
             <CCHeader/>
                 <h2 className="feature-tournaments_header" >Trending Tournaments</h2>
                 <Swiper
-                    wrapperTag="ul"
+                    modules={[Navigation,Pagination,FreeMode,Grid]}
+                    
                     spaceBetween={50}
                     slidesPerView={1}
                     navigation
-                    pagination={{ clickable: true }}
+                   
                     scrollbar={{ draggable: true }}
                     onSwiper={(swiper) => console.log(swiper)}
                     onSlideChange={() => console.log('slide change')}
                 >
                     { tournamentsByAttendees && <div>{tournamentsByAttendees.map(tournament =>(
                        <SwiperSlide
-                            wrapperTag='li' 
+                            
                             onClick={()=> history.push('/tournamentDetail/'+tournament.id) }
                             key={tournament.id} 
                         > 
@@ -73,7 +85,7 @@ export default function () {
                 <h2 className="feature-tournaments_header" >Upcoming Tournaments</h2>
                 
                 <Swiper
-                    wrapperTag="ul"
+                modules={[Navigation,Pagination,FreeMode,Grid]}
                     spaceBetween={0}
                     slidesPerView={1}
                     navigation
@@ -84,7 +96,7 @@ export default function () {
                         {tournamentsNearBy && tournamentsNearBy.map(tournament => (
                             
                                 <SwiperSlide
-                                    wrapperTag='li' 
+                                    
                                     onClick={()=> history.push('/tournamentDetail/'+tournament.id)} 
                                     key={tournament.id} 
                                 > 
