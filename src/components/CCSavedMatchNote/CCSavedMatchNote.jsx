@@ -81,7 +81,7 @@ export default function CCSavedMatchNote() {
             <div className='question'>
                 <h4>What Did You Do Well?</h4>
                 <div className="dropdown">
-                    <FormControl fullWidth>
+                    <FormControl fullWidth disabled>
                         <InputLabel id="did-well">Did well</InputLabel>
                       { note.skillDemonstrated && <Select
                             value={note.skillDemonstrated }
@@ -109,7 +109,7 @@ export default function CCSavedMatchNote() {
             <div className='question'>
                 <h4>What Did Not Go Well?</h4>
                 <div className="dropdown">
-                    <FormControl fullWidth>
+                    <FormControl fullWidth disabled>
                         <InputLabel id="didnt-well">Didn't Go Well</InputLabel>
                      {  note.skillToImprove  &&<Select
                             value={note.skillToImprove}
@@ -171,13 +171,13 @@ export default function CCSavedMatchNote() {
                     onClick={(evt)=>{
                         evt.preventDefault();
                         dispatch({
-                            type:"ADD_MATCH_NOTE",
+                            type:"UPDATE_MATCH_NOTE",
                             payload:matchNote});
                             history.push('/main')
                     }}
                     variant="outlined"
                 >
-                    SUBMIT
+                    Update
                 </Button>
             </Stack>
             
