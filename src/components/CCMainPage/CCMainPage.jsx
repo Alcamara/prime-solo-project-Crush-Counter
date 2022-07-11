@@ -11,12 +11,14 @@ import Box from '@mui/joy/Box';
 
 //carousel
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode } from "swiper";
 
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
+import 'swiper/css/free-mode'
 
 
 export default function () {
@@ -46,8 +48,8 @@ export default function () {
             <CCHeader/>
                 <h2 className="feature-tournaments_header" >Trending Tournaments</h2>
                 <Swiper
-                   
-                    spaceBetween={0}
+                    wrapperTag="ul"
+                    spaceBetween={50}
                     slidesPerView={1}
                     navigation
                     pagination={{ clickable: true }}
@@ -56,7 +58,8 @@ export default function () {
                     onSlideChange={() => console.log('slide change')}
                 >
                     { tournamentsByAttendees && <div>{tournamentsByAttendees.map(tournament =>(
-                       <SwiperSlide 
+                       <SwiperSlide
+                            wrapperTag='li' 
                             onClick={()=> history.push('/tournamentDetail/'+tournament.id) }
                             key={tournament.id} 
                         > 
@@ -70,7 +73,7 @@ export default function () {
                 <h2 className="feature-tournaments_header" >Upcoming Tournaments</h2>
                 
                 <Swiper
-                    
+                    wrapperTag="ul"
                     spaceBetween={0}
                     slidesPerView={1}
                     navigation
@@ -80,7 +83,8 @@ export default function () {
                 >
                         {tournamentsNearBy && tournamentsNearBy.map(tournament => (
                             
-                                <SwiperSlide 
+                                <SwiperSlide
+                                    wrapperTag='li' 
                                     onClick={()=> history.push('/tournamentDetail/'+tournament.id)} 
                                     key={tournament.id} 
                                 > 
