@@ -26,13 +26,13 @@ router.get('/',rejectUnauthenticated,(req, res) => {
         "query": `
         query {
           tournaments(query:{
-            perPage: 200
+            perPage: 30
             page:1
             filter:{
               hasBannerImages:true
               location:{
                 distanceFrom:"44.92380657348581,-93.21992492794612"
-                distance:"1500mi"
+                distance:"500mi"
               }
               past:false
               upcoming: true
@@ -61,13 +61,15 @@ router.get('/',rejectUnauthenticated,(req, res) => {
         `,
     };
 
+    console.time('tournament api request');
+
     axios({
         url:endpoint,
         method:"POST",
         headers:headers,
         data: graphqlQuery
     }).then((resp)=>{
-      
+      console.timeEnd('tournament api request');
        res.send(resp.data.data.tournaments.nodes)
     }).catch((err)=>{
         console.error(`${err}`);
@@ -79,8 +81,13 @@ router.get('/',rejectUnauthenticated,(req, res) => {
     
 });
 
-router.get('/search', rejectUnauthenticated,(req, res) => {
-  
+router.post('/search', rejectUnauthenticated,(req, res) => {
+    console.log(req.body);
+
+    const state = (req.body.state !== '\"\"')? `"${req.body.state}"` : req.body.state
+    console.log(state);
+    
+    const setting = req.body.setting 
     // GET route code here
     const endpoint = "https://api.start.gg/gql/alpha";
 
@@ -93,17 +100,14 @@ router.get('/search', rejectUnauthenticated,(req, res) => {
         "query": `
         query{
           tournaments(query:{
-            perPage:300
+            perPage:50
             page:1
             filter:{
               videogameIds: [7,10055,33990]
-              afterDate: 1657201146
+              hasOnlineEvents: ${setting}
               past:false
               upcoming: true
-              location:{
-                distance: "2000mi"
-                distanceFrom: "44.97803522723541,-93.26320829751128"
-              }
+              addrState: ${state}
             }
           }){
             nodes{
@@ -134,7 +138,7 @@ router.get('/search', rejectUnauthenticated,(req, res) => {
       headers:headers,
       data: graphqlQuery
     }).then((resp)=>{
-      console.log('tournament Search List',resp.data.data.tournaments.nodes)
+      
      res.send(resp.data.data.tournaments.nodes)
     }).catch((err)=>{
       console.error(`${err}`);

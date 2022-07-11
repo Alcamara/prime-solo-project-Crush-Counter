@@ -28,6 +28,7 @@ import CCTournamentSearch from '../CCTournamentSearch/CCTournamentSearch';
 import CCMatchNote from '../CCMatchNote/CCMatchNote';
 import CCSavedMatchNote from '../CCSavedMatchNote/CCSavedMatchNote';
 import CCMatchNoteList from '../CCMatchNoteList/CCMatchNoteList';
+import CCTournamentSearchDD from '../CCTournamentSearchDD/CCTournamentSearchDD';
 
 import './App.css';
 
@@ -89,6 +90,7 @@ function App() {
           {/* CCtournamentSearch */}
           <ProtectedRoute exact path="/tournamentSearch">
             <CCHeader/>
+            <CCTournamentSearchDD/>
             <CCTournamentSearch/>
             <CCNav/> 
           </ProtectedRoute>

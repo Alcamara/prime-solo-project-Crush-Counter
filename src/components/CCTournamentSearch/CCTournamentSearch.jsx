@@ -10,11 +10,7 @@ export default function CCTournamentSearch(){
     const dispatch = useDispatch();
     const tournamentSearchResults = useSelector(store => store.tournamentSearch);
     const history = useHistory()
-    useEffect(()=>{
-        dispatch({
-            type: "FETCH_TOURNAMENTS_LIST"
-        })
-    },[])
+    
 
     return (
         <div>

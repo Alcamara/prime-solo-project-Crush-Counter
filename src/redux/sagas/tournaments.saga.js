@@ -31,10 +31,10 @@ function* fetchTournamentDetail(action) {
     }
 }
 
-function* fetchTournamentsList() {
+function* fetchTournamentsList(action) {
     try {
         
-        const tournamentSearchList = yield axios.get('/api/tournaments/search')
+        const tournamentSearchList = yield axios.post('/api/tournaments/search', action.payload)
         console.log(tournamentSearchList.data);
 
         yield put({ type:"SET_TOURNAMENTS_LIST", payload: tournamentSearchList.data})
@@ -58,6 +58,7 @@ function* tournamentsSagas(){
     yield takeLatest("FETCH_TOURNAMENT_DETAILS", fetchTournamentDetail)
     yield takeLatest("FETCH_TOURNAMENTS_LIST", fetchTournamentsList)
     yield takeLatest("BOOKMARK_TOURNAMENT", bookmarkTournament)
+    
 }
 
 export default tournamentsSagas
