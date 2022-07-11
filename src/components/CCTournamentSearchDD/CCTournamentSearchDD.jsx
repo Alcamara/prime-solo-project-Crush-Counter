@@ -19,7 +19,7 @@ export default function CCTournamentSearchDD() {
 
     const miles = ['25mi','50mi','100mi','250mi','500mi','1000mi']
 
-    const [searchParam, setSearchParam] = useState({state:'\"\"', miles:'\"\"', setting:false });
+    const [searchParam, setSearchParam] = useState({state:'', miles:'', setting:false });
 
     const dispatch = useDispatch()
 
@@ -57,6 +57,7 @@ export default function CCTournamentSearchDD() {
       <FormControl>
         <InputLabel id="demo-simple-select-label">Distance</InputLabel>
         <Select
+            disabled
             className='dropdown'
             labelId="demo-simple-select-label"
             value={searchParam.miles}

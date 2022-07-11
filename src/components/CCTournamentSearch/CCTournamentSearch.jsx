@@ -14,7 +14,7 @@ export default function CCTournamentSearch(){
 
     return (
         <div>
-            <h2>Tournament Search</h2>
+            <h2>Results:</h2>
             <div className="results">
             {tournamentSearchResults &&
                 tournamentSearchResults.map(tournament =>(
