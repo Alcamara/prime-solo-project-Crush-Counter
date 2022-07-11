@@ -32,7 +32,7 @@ router.get('/',rejectUnauthenticated,(req, res) => {
               hasBannerImages:true
               location:{
                 distanceFrom:"44.92380657348581,-93.21992492794612"
-                distance:"2000mi"
+                distance:"1500mi"
               }
               past:false
               upcoming: true

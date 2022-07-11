@@ -1,6 +1,7 @@
 import './CCHeader.css'
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { styled, useTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
@@ -42,6 +43,7 @@ export default function CCHeader (){
 
         const [open,setOpen] = useState(false)
         const history = useHistory()
+        const dispatch = useDispatch()
 
     return (
         <AppBar position="static" >
