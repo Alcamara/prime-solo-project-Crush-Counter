@@ -37,6 +37,60 @@ router.post('/',rejectUnauthenticated,(req,res)=>{
     
 })
 
+router.post('/savedMatchNote/:id',rejectUnauthenticated,(req,res)=>{
+    const id = req.params.id
+    console.log(id);
+
+    const fetchQuery = `
+        SELECT "matchNote".id, "tournamentId", "win", "skillDemonstrated", "skillToImprove", "note" FROM "matchNote"
+        JOIN "user" ON "user".id = "matchNote"."userId"
+        WHERE "matchNote".id = $1;
+    `
+    const sqlParam = [
+        id
+    ]
+
+    pool.query(fetchQuery,sqlParam)
+        .then((dbRes)=>{
+            const id = dbRes.rows[0].tournamentId;
+            console.log('tournamentID', id);
+
+            const endpoint = "https://api.start.gg/gql/alpha";
+
+            const headers = {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + process.env.STARTGG_API_KEY
+            };
+
+            const graphqlQuery = {
+                "query": `
+                    query{
+                        tournament(id:${id}){
+                        name
+                    }
+                    }
+                `,
+            };
+
+            axios({
+                url:endpoint,
+                method:"POST",
+                headers:headers,
+                data: graphqlQuery
+              }).then((resp)=>{
+                console.log('here:',resp.data.data.tournament.name);
+                res.send({name: resp.data.data.tournament.name, dbResult: dbRes.rows[0]})
+              }).catch((err)=>{
+                console.error("axios failed",`${err}`);
+              })
+
+        }).catch((err)=>{
+            console.error(`${err}`);
+        })
+
+
+})
+
 router.get('/',rejectUnauthenticated,(req,res)=>{
 
     const userId = req.user.id
@@ -155,7 +209,31 @@ router.delete('/:id',rejectUnauthenticated,(req,res)=>{
         })
 })
 
+router.put('/savedMatchNote/:id',(req,res)=>{
+    const id = req.params.id
+    console.log('in put',id, 'payload', req.body );
 
+    const updateQuery = `
+        UPDATE "matchNote"
+        SET "win" = $1, "skillDemonstrated" = $2, "skillToImprove" = $3, "note" = $4
+        WHERE "matchNote".id = ${id} ;
+    `
+
+    const sqlParam = [
+        req.body.win,
+        req.body.skillDemonstrated,
+        req.body.skillToImprove,
+        req.body.note
+    ]
+
+    pool.query(updateQuery,sqlParam)
+        .then(()=>{
+            res.sendStatus(200)
+        }).catch((err)=>{
+            console.error(`${err}`);
+        })
+
+})
 
 
 module.exports = router;

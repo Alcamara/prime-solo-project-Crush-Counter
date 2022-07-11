@@ -24,3 +24,11 @@
     flex-direction: column;
     margin-top: 30px;
 }
+
+.disable{
+    pointer-events: none;
+}
+
+.enable{
+    pointer-events: auto;
+}

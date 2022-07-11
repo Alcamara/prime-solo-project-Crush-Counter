@@ -38,11 +38,32 @@ function* deleteMatchNote(action) {
     }
 }
 
+function* fetchSavedMatchNotes(action){
+    console.log('fetchSavedMatchNotes');
+    try {
+
+        const savedNote = yield axios.post('/api/match-notes/savedMatchNote/'+action.payload)
+        yield put({type:'SET_SAVED_MATCH_NOTE', payload: savedNote.data});
+    } catch (error) {
+        console.error(`${error}`);
+    }
+}
+
+function* updateMatchNote(action){
+    console.log('hey', action.type);
+    try {
+       yield axios.put('/api/match-notes//savedMatchNote/'+action.payload.tournamentId, action.payload)
+    } catch (error) {
+        console.error(`${error}`);
+    }
+}
+
 function* matchNotesSagas(){
     yield takeLatest("ADD_MATCH_NOTE", addMatchNote)
     yield takeLatest("FETCH_MATCH_NOTES", fetchMatchNotes)
     yield takeLatest("DELETE_MATCH_NOTE", deleteMatchNote)
-    
+    yield takeLatest("FETCH_SAVED_MATCH_NOTE", fetchSavedMatchNotes)
+    yield takeLatest("UPDATE_MATCH_NOTE", updateMatchNote)
 }
 
 

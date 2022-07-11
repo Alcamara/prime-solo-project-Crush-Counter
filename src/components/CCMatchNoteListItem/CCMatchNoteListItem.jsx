@@ -92,10 +92,7 @@ export default function CCMatchNoteListItem({note,matchNotes}){
         onClick={()=>{
           console.log('it works');
           history.push('/match-note/saved/'+note.id)
-          dispatch({
-            type:"FETCH_SAVED_MATCH_NOTE",
-            payload: note.id
-          })
+          
       }} 
       >
         <Typography noWrap>{matchNotes.name}</Typography>
