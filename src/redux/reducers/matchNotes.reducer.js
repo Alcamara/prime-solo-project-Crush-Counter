@@ -17,6 +17,9 @@ export const savedMatchNote = (state={}, action)=>{
         case 'SET_SAVED_MATCH_NOTE':
             
             return action.payload;
+        
+            case "ONCHANGE":
+            return action.payload
     
         default:
             return state;

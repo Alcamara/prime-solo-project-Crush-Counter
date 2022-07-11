@@ -90,11 +90,12 @@ export default function CCSavedMatchNote() {
                   { (buttonMode)? <FormControl fullWidth > 
                         <InputLabel id="did-well">Did well</InputLabel>
                       { note.skillDemonstrated && <Select
-                            value={matchNote.skillDemonstrated}
+                            value={note.skillDemonstrated}
                             onChange={(evt)=>{
-                                setMatchNote({
-                                    ...matchNote,
-                                    skillDemonstrated: evt.target.value
+                                dispatch({
+                                    type: "ONCHANGE",
+                                   payload:{ dbResult: {...note,
+                                    skillDemonstrated: evt.target.value}}
                                 })
                                 
                             }}
@@ -146,12 +147,13 @@ export default function CCSavedMatchNote() {
                     <FormControl fullWidth >
                         <InputLabel id="didnt-well">Didn't Go Well</InputLabel>
                     {  note.skillToImprove  &&<Select
-                            value={matchNote.skillToImprove}
+                            value={note.skillToImprove}
                             onChange={(evt)=>{
 
-                                setMatchNote({
-                                    ...matchNote,
-                                    skillToImprove: evt.target.value
+                                dispatch({
+                                    type: "ONCHANGE",
+                                   payload:{ dbResult: {...note,
+                                    skillToImprove: evt.target.value}}
                                 })
                                 console.log(matchNote);
                             }}
@@ -197,13 +199,14 @@ export default function CCSavedMatchNote() {
             <div className='question'>
            {(buttonMode)?
            <TextField
-                value={matchNote.note}
+                value={note.note}
                 className="textField"
                 multiline
                 onChange={(evt)=>{
-                    setMatchNote({
-                        ...matchNote,
-                        note: evt.target.value
+                    dispatch({
+                        type: "ONCHANGE",
+                       payload:{ dbResult: {...note,
+                        note: evt.target.value}}
                     })
                 }}
                 rows={4}
