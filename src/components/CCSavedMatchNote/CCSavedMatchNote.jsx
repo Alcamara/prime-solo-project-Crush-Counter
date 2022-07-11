@@ -90,11 +90,12 @@ export default function CCSavedMatchNote() {
                   { (buttonMode)? <FormControl fullWidth > 
                         <InputLabel id="did-well">Did well</InputLabel>
                       { note.skillDemonstrated && <Select
-                            value={matchNote.skillDemonstrated}
+                            value={note.skillDemonstrated}
                             onChange={(evt)=>{
-                                setMatchNote({
-                                    ...matchNote,
-                                    skillDemonstrated: evt.target.value
+                                dispatch({
+                                    type: "ONCHANGE",
+                                   payload:{ dbResult: {...note,
+                                    skillDemonstrated: evt.target.value}}
                                 })
                                 
                             }}

@@ -26,13 +26,13 @@ router.get('/',rejectUnauthenticated,(req, res) => {
         "query": `
         query {
           tournaments(query:{
-            perPage: 30
+            perPage: 200
             page:1
             filter:{
               hasBannerImages:true
               location:{
                 distanceFrom:"44.92380657348581,-93.21992492794612"
-                distance:"500mi"
+                distance:"1500mi"
               }
               past:false
               upcoming: true
