@@ -2,7 +2,7 @@ import './CCHeader.css'
 import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-
+import { styled, useTheme } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import MenuIcon from '@mui/icons-material/Menu';
 import Box from '@mui/material/Box';
@@ -15,6 +15,7 @@ import NoteIcon from '@mui/icons-material/Note';
 import CssBaseline from '@mui/material/CssBaseline';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import EventNoteIcon from '@mui/icons-material/EventNote';
+import LogoutIcon from '@mui/icons-material/Logout';
 //list
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
@@ -22,6 +23,20 @@ import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+
+const drawerWidth = 240;
+
+
+  
+
+const DrawerHeader = styled('div')(({ theme }) => ({
+    display: 'flex',
+    alignItems: 'center',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+    justifyContent: 'flex-end',
+  }));
 
 export default function CCHeader (){
 
@@ -47,6 +62,15 @@ export default function CCHeader (){
           </Typography>
         </Toolbar>
         <SwipeableDrawer
+            sx={{
+                width: drawerWidth,
+                flexShrink: 0,
+                '& .MuiDrawer-paper': {
+                  width: drawerWidth,
+                  boxSizing: 'border-box',
+                },
+              }}
+            variant="persistent"
             anchor='left'
             open={open}
             onOpen={()=>{
@@ -56,9 +80,9 @@ export default function CCHeader (){
                 setOpen(false)
             }}
         >
-            <IconButton>
+            <DrawerHeader>
                 <ChevronLeftIcon onClick={()=> setOpen(false)}/>
-            </IconButton>
+            </DrawerHeader>
             <Divider/>
             <List>
                 <ListItem>
@@ -67,23 +91,24 @@ export default function CCHeader (){
                     >
                         <ListItemIcon>
                             <NoteIcon/>
-                            <ListItemText primary={'Match Notes'} />
                         </ListItemIcon>
+                        <ListItemText primary={'Match Notes'} />
                     </ListItemButton>
                 </ListItem>
                 <ListItem>
                     <ListItemButton>
                         <ListItemIcon>
                                 <EventNoteIcon/>
-                                <ListItemText primary={`Bookmarked Tournaments`} />
                         </ListItemIcon>
+                        <ListItemText primary={`Bookmarked Tournaments`} />
                     </ListItemButton>
                 </ListItem>
                 <ListItem>
                     <ListItemButton>
                         <ListItemIcon>
-                            <ListItemText primary={'Log out'} />
+                            <LogoutIcon/>
                         </ListItemIcon>
+                        <ListItemText primary={'Log out'} />
                     </ListItemButton>
                 </ListItem>
             </List>
