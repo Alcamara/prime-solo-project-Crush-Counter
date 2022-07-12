@@ -88,12 +88,12 @@ function App() {
           </ProtectedRoute>
 
           {/* CCtournamentSearch */}
-          <ProtectedRoute exact path="/tournamentSearch">
+          <Route exact path="/tournamentSearch">
             <CCHeader/>
             <CCTournamentSearchDD/>
             <CCTournamentSearch/>
             <CCNav/> 
-          </ProtectedRoute>
+          </Route>
 
           {/* CCTournamentsDetails Page */}
           <ProtectedRoute exact path="/tournamentDetail/:id">
