@@ -140,3 +140,24 @@ Form Treatment
 .CA-btn:hover{
   color:#444
 }
+
+/* 
+  Register User
+*/
+
+.input-section{
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.input{
+  
+  width: 40%;
+}
+
+.input-section-2{
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 30px; 
+}
