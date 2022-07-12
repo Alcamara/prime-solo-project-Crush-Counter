@@ -33,7 +33,10 @@ export default function CCMatchNoteListItem({note,matchNotes}){
     setOpen(false);
   };
 
-
+    if(note){
+      console.log(note);
+      console.log(matchNotes);
+    }
    
     return (
       
@@ -76,7 +79,7 @@ export default function CCMatchNoteListItem({note,matchNotes}){
                 onClick={()=>{
                   dispatch({
                     type:"DELETE_MATCH_NOTE",
-                    payload: note.id
+                    payload: note.matchNotId
                   })
                   handleClose()
                 }} 
@@ -91,7 +94,7 @@ export default function CCMatchNoteListItem({note,matchNotes}){
       <ListItemContent
         onClick={()=>{
           console.log('it works');
-          history.push('/match-note/saved/'+note.id)
+          history.push('/match-note/saved/'+note.matchNotId)
           
       }} 
       >
