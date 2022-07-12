@@ -231,14 +231,15 @@ router.put('/savedMatchNote/:id',(req,res)=>{
     const updateQuery = `
         UPDATE "matchNote"
         SET "win" = $1, "skillDemonstrated" = $2, "skillToImprove" = $3, "note" = $4
-        WHERE "matchNote".id = ${req.body.id} ;
+        WHERE "matchNote".id = $5 ;
     `
 
     const sqlParam = [
         req.body.win,
         req.body.skillDemonstrated,
         req.body.skillToImprove,
-        req.body.note
+        req.body.note,
+        req.body.id
     ]
 
     pool.query(updateQuery,sqlParam)

@@ -44,7 +44,7 @@ export default function CCNav(){
               <BottomNavigationAction
                 onClick={()=> {
 
-                  history.push("/main")
+                  history.push("/user")
                   dispatch({ type: "CLEAR_TOURNAMENT_DETAILS"})
                 }} 
                 label="Main" 

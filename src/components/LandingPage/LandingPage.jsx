@@ -16,6 +16,9 @@ function LandingPage() {
 
   return (
     <div className="container">
+      <div className='info'>
+
+      
         <header>
           <h1>Welcome to </h1>
             <h2>Crush Counter</h2>
@@ -43,6 +46,8 @@ function LandingPage() {
           </Button>
           </Stack>
         </div>
+
+      </div>
     </div>
   );
 }
