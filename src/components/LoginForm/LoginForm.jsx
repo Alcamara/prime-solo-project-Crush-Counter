@@ -3,6 +3,8 @@ import { useDispatch } from 'react-redux';
 import {useSelector} from 'react-redux';
 //MUI
 import TextField from '@mui/material/TextField';
+import InputLabel from '@mui/material/InputLabel';
+import Button from '@mui/material/Button';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -49,7 +51,7 @@ function LoginForm() {
             required
             value={username}
             onChange={(event) => setUsername(event.target.value)}
-            
+            margin='normal'
           />
         
       
@@ -63,11 +65,19 @@ function LoginForm() {
             required
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            margin='normal'
           />
         
       </div>
-      <div>
-        <input className="btn" type="submit" name="submit" value="Log In" />
+      <div className='login-btn-section'>
+        
+        <Button
+          className='login-btn'
+          variant='contained'
+          onClick={login}
+        >
+          LOG IN
+        </Button>
       </div>
     </form>
     </div>

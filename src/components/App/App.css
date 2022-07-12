@@ -29,10 +29,9 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  color: #0d18bc;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
   font-size: 1.1rem;
   outline: 0;
   cursor: pointer;
@@ -120,4 +119,24 @@ Form Treatment
   flex-direction: column;
   margin: 0 auto;
   
+}
+
+.login-btn-section{
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.login-btn-section > .login-btn{
+  width: 60%;
+}
+
+.CA-btn{
+  color: #0d18bc;
+  background-color: white;
+  border-style: none;
+}
+
+.CA-btn:hover{
+  color:#444
 }
