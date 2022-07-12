@@ -81,7 +81,7 @@ router.get('/',rejectUnauthenticated,(req, res) => {
     
 });
 
-router.post('/search', rejectUnauthenticated,(req, res) => {
+router.post('/search',(req, res) => {
     console.log(req.body);
 
     const state = (req.body.state !== '\"\"')? `"${req.body.state}"` : req.body.state

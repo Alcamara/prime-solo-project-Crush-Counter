@@ -35,6 +35,7 @@ function LandingPage() {
               SEARCH FOR TOURNAMENT 
           </Button>
           <Button
+            onClick={()=> history.push('/login')}
             variant='contained'
             endIcon={<PieChartIcon/>}
           >
