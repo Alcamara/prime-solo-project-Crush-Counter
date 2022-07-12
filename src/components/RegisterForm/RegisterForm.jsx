@@ -89,8 +89,10 @@ function RegisterForm() {
             label='Gamertag'
             variant='standard'
             type='text'
+            value={gamertag}
             required
             className='input-2'
+            onChange={(event) => setGamertag(event.target.value)}
           />
       </div>
       <div>
