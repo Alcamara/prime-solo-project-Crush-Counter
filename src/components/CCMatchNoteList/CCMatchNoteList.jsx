@@ -45,7 +45,7 @@ export default function CCMatchNoteList(){
                     matchNotes.dbResults.map((note, index) =>(
                         <>
                         <CCMatchNoteListItem
-                            key={note.id} 
+                            key={note.matchNotId} 
                             matchNotes={matchNotes.apiQueryResults[index]} 
                             note={note}
                         />

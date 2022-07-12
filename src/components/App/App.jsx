@@ -67,7 +67,8 @@ function App() {
             exact
             path="/user"
           >
-            <UserPage />
+            <CCMainPage/>
+            <CCNav/>
           </ProtectedRoute>
 
           <ProtectedRoute
@@ -82,8 +83,8 @@ function App() {
             switch router to protected later
           */}
           <ProtectedRoute exact path="/main">
-            <CCMainPage/>
-            <CCNav/>
+            {/* <CCMainPage/>
+            <CCNav/> */}
             
           </ProtectedRoute>
 

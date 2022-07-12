@@ -254,7 +254,7 @@ export default function CCSavedMatchNote() {
                             dispatch({
                                 type:"UPDATE_MATCH_NOTE",
                                 payload: note});
-                                history.push('/main')       
+                                history.push('/user')       
                         }}
                         variant="outlined"
                     >

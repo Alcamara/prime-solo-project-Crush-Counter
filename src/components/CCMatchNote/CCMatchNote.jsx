@@ -156,7 +156,7 @@ export default function CCMatchNote() {
             >
                 <Button
                     onClick={()=>{
-                        history.push('/main/')
+                        history.push('/user')
                     }} 
                     color="error" 
                     variant="outlined">
@@ -168,7 +168,7 @@ export default function CCMatchNote() {
                         dispatch({
                             type:"ADD_MATCH_NOTE",
                             payload:matchNote});
-                            history.push('/main')
+                            history.push('/user')
                     }}
                     variant="outlined"
                 >

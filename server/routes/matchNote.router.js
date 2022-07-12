@@ -97,7 +97,7 @@ router.get('/',rejectUnauthenticated,(req,res)=>{
     console.log(req.user.id);
 
     const getQuery = `
-        SELECT "matchNote".id as "matchNotId", "user".id as "userId", "tournamentId", "win", "skillDemonstrated", "skillToImprove", "note", "date" FROM "matchNote"
+        SELECT "matchNote".id as "matchNotId", "user".id as "userId", "tournamentId", "win", "skillDemonstrated", "skillToImprove", "note", to_char("date", 'MM/DD/YYYY') FROM "matchNote"
         JOIN "user" ON "user".id = "matchNote"."userId"
         WHERE "user".id = $1
         ORDER by "date" DESC;

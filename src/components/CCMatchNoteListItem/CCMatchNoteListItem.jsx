@@ -99,7 +99,7 @@ export default function CCMatchNoteListItem({note,matchNotes}){
       }} 
       >
         <Typography noWrap>{matchNotes.name}</Typography>
-        <Typography noWrap>05/22/1985</Typography>
+        <Typography noWrap>{note.to_char}</Typography>
         <Typography level="body2" noWrap>
           {note.note}
         </Typography>

@@ -82,9 +82,9 @@ router.get('/',rejectUnauthenticated,(req, res) => {
 });
 
 router.post('/search',(req, res) => {
-    console.log(req.body);
+    console.log('got from client:',req.body);
 
-    const state = (req.body.state !== '\"\"')? `"${req.body.state}"` : req.body.state
+    const state = (req.body.state !== '')? `"${req.body.state}"` : `"${req.user.state}"`
     console.log(state);
     
     const setting = req.body.setting 
