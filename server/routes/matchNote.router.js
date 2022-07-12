@@ -94,42 +94,54 @@ router.post('/savedMatchNote/:id',rejectUnauthenticated,(req,res)=>{
 router.get('/',rejectUnauthenticated,(req,res)=>{
 
     const userId = req.user.id
+    console.log(req.user.id);
 
     const getQuery = `
-        SELECT "matchNote".id, "tournamentId", "win", "skillDemonstrated", "skillToImprove", "note" FROM "matchNote"
+        SELECT "user".id, "tournamentId", "win", "skillDemonstrated", "skillToImprove", "note", "date" FROM "matchNote"
         JOIN "user" ON "user".id = "matchNote"."userId"
-        WHERE "matchNote"."userId" = ${userId};
+        WHERE "user".id = 1;
     `
+
+    const sqlParam = [
+        userId
+    ]
 
     pool.query(getQuery)
         .then((dbRes)=>{
-            ;
+            console.log(dbRes.rows)
          const tournamentIds =   dbRes.rows.map(evt =>(
                 evt.tournamentId
             ))
 
             console.log(tournamentIds);
 
-            console.log("value:" ,tournamentIds[1]);
-
-            console.log('index of: ',tournamentIds.indexOf(tournamentIds[4],4) );
-
-            
+            console.log("value:" ,tournamentIds[0]);
 
 
             let query = { "query": ``};
 
             for(let i = 0; i < tournamentIds.length; i++){
-            if(i === 0){
+            if(i === 0 && tournamentIds.length === 1){
                 query["query"] += `query{
-                t${i+1}: tournament(id:${tournamentIds[i]}){
-                id
-                name
-                images{
-                    url
-                  }
-                },
-                ` 
+                    t${i+1}: tournament(id:${tournamentIds[i]}){
+                    id
+                    name
+                    images{
+                        url
+                      }
+                    },
+                }
+                    ` 
+            }else if(i === 0){
+                query["query"] += `query{
+                    t${i+1}: tournament(id:${tournamentIds[i]}){
+                    id
+                    name
+                    images{
+                        url
+                      }
+                    },
+                    ` 
             }else if(i === tournamentIds.length - 1){
                 query["query"] += `t${i+1}: tournament(id:${tournamentIds[i]}){
                     id
@@ -152,6 +164,8 @@ router.get('/',rejectUnauthenticated,(req,res)=>{
             }
                 
             }
+
+            console.log(query);
 
             const endpoint = "https://api.start.gg/gql/alpha";
 

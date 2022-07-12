@@ -28,6 +28,16 @@ function RegisterForm() {
   const registerUser = (event) => {
     event.preventDefault();
 
+    console.log({
+      username: username,
+      password: password,
+      firstName: firstName,
+      lastName: lastName,
+      gamertag: gamertag,
+      state: state
+
+    },);
+
     dispatch({
       type: 'REGISTER',
       payload: {
@@ -122,7 +132,7 @@ function RegisterForm() {
             value={state}
             onChange={(event)=> setState(event.target.value)}
           >
-            {states.map(state =>(
+            { states.map(state =>(
               <MenuItem value={state}>{state}</MenuItem>
             ))}
           </Select>
