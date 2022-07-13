@@ -250,9 +250,98 @@ router.get('/bookmark',(req,res)=>{
   pool.query(fetchBookmarkedTournaments,[req.user.id])
       .then((dbRes)=>{
          console.log(dbRes.rows);
-         res.send(dbRes.rows)
+         return dbRes.rows.map( tournament =>(
+          tournament.tournamentId
+         ))
+      })
+      .then((tournamentIds)=>{
+        console.log(tournamentIds);
+        
+
+        let query = { "query": ``};
+
+            for(let i = 0; i < tournamentIds.length; i++){
+            if(i === 0 && tournamentIds.length === 1){
+                query["query"] += `query{
+                    t${i+1}: tournament(id:${tournamentIds[i]}){
+                    id
+                    name
+                    images{
+                        url
+                      }
+                    },
+                }
+                    ` 
+            }else if(i === 0){
+                query["query"] += `query{
+                    t${i+1}: tournament(id:${tournamentIds[i]}){
+                    id
+                    name
+                    images{
+                        url
+                      }
+                    },
+                    ` 
+            }else if(i === tournamentIds.length - 1){
+                query["query"] += `t${i+1}: tournament(id:${tournamentIds[i]}){
+                    id
+                    name
+                    images{
+                        url
+                      }
+                }
+            }
+                `
+            }else{
+                query["query"] += `t${i+1}: tournament(id:${tournamentIds[i]}){
+                id
+                name
+                images{
+                    url
+                  }
+                },
+                `
+            }
+                
+            }
+
+            console.log(query);
+
+            
+            const endpoint = "https://api.start.gg/gql/alpha";
+
+            const headers = {
+                "content-type": "application/json",
+                "Authorization": "Bearer " + process.env.STARTGG_API_KEY
+            };
+
+
+
+            return axios({
+              url:endpoint,
+              method:"POST",
+              headers:headers,
+              data: query
+            })
+
+      })
+      .then((apiResults)=>{
+        console.log(apiResults.data);
+        
+          let queryArr = []
+          let num = 1;
+
+          for(let i = 0; i < Object.keys(apiResults.data.data).length; i++){
+              queryArr.push(apiResults.data.data["t"+num])
+              ++num
+              console.log(num);
+          }
+
+          res.send(queryArr);
+
+         
       }).catch((err)=>{
-        res.sendStatus(500)
+        res.sendStatus(`${err}`)
       })
 })
 
