@@ -266,6 +266,11 @@ router.get('/bookmark',(req,res)=>{
                     t${i+1}: tournament(id:${tournamentIds[i]}){
                     id
                     name
+                    addrState
+                    isRegistrationOpen
+                    startAt
+                    endAt
+                    numAttendees
                     images{
                         url
                       }
@@ -277,6 +282,11 @@ router.get('/bookmark',(req,res)=>{
                     t${i+1}: tournament(id:${tournamentIds[i]}){
                     id
                     name
+                    addrState
+                    isRegistrationOpen
+                    startAt
+                    endAt
+                    numAttendees
                     images{
                         url
                       }
@@ -286,6 +296,11 @@ router.get('/bookmark',(req,res)=>{
                 query["query"] += `t${i+1}: tournament(id:${tournamentIds[i]}){
                     id
                     name
+                    addrState
+                    isRegistrationOpen
+                    startAt
+                    endAt
+                    numAttendees
                     images{
                         url
                       }
@@ -296,6 +311,11 @@ router.get('/bookmark',(req,res)=>{
                 query["query"] += `t${i+1}: tournament(id:${tournamentIds[i]}){
                 id
                 name
+                addrState
+                isRegistrationOpen
+                startAt
+                endAt
+                numAttendees
                 images{
                     url
                   }
