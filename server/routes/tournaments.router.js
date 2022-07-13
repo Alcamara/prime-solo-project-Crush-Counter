@@ -239,10 +239,24 @@ router.post('/bookmark/:id',(req,res)=>{
   get list of tournaments bookmarked
 */ 
 router.get('/bookmark',(req,res)=>{
-  const fetchTournaments = `
 
+  console.log(req.user.id);
+
+  const fetchBookmarkedTournaments = `
+    SELECT * FROM "tournaments"
+    Where "userId" = $1;
   `
+
+  pool.query(fetchBookmarkedTournaments,[req.user.id])
+      .then((dbRes)=>{
+         console.log(dbRes.rows);
+         res.send(dbRes.rows)
+      }).catch((err)=>{
+        res.sendStatus(500)
+      })
 })
+
+
 
 
 
