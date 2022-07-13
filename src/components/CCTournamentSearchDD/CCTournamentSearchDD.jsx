@@ -41,7 +41,6 @@ export default function CCTournamentSearchDD() {
         <InputLabel id="demo-simple-select-label">State</InputLabel>
             <Select
             className='dropdown'
-            labelId="demo-simple-select-label"
             value={searchParam.state}
             label="States"
             onChange={(evt)=>{
@@ -51,7 +50,6 @@ export default function CCTournamentSearchDD() {
             { states.map((state)=>(
                 <MenuItem key={state} value={state}>{state}</MenuItem>
             ))}
-            
             </Select>
       </FormControl>
       <FormControl>
@@ -59,7 +57,7 @@ export default function CCTournamentSearchDD() {
         <Select
             disabled
             className='dropdown'
-            labelId="demo-simple-select-label"
+            
             value={searchParam.miles}
             label="States"
             onChange={(evt)=>{
@@ -68,9 +66,8 @@ export default function CCTournamentSearchDD() {
             >
             { miles.map((miles)=>(
                 <MenuItem value={miles}>{miles}</MenuItem>
-            ))}
-            
-            </Select>
+            ))} 
+        </Select>
       </FormControl>
       <FormControl>
         <InputLabel id="demo-simple-select-label">Tournament Setting</InputLabel>
@@ -84,8 +81,6 @@ export default function CCTournamentSearchDD() {
             >
             <MenuItem value={true}>{"Online"}</MenuItem>
             <MenuItem value={false}>{"Offline"}</MenuItem>
-
-            
             </Select>
       </FormControl>
       </div>

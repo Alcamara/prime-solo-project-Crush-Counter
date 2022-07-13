@@ -88,7 +88,7 @@ export default function CCMatchNote() {
                                 })
                                 console.log(matchNote);
                             }}
-                            label="did-not"
+                            
                         >
                         <MenuItem value='anti-air'>Anti-Air</MenuItem>
                         <MenuItem value='defense'>Defense</MenuItem>
@@ -108,6 +108,7 @@ export default function CCMatchNote() {
                     <FormControl fullWidth>
                         <InputLabel id="didnt-well">Didn't Go Well</InputLabel>
                         <Select
+                            className={'display:block'}
                             value={matchNote.skillToImprove}
                             onChange={(evt)=>{
 

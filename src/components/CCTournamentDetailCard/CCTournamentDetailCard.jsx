@@ -77,6 +77,7 @@ export default function () {
                         type: "BOOKMARK_TOURNAMENT",
                         payload: tournamentDetail.id
                       })
+                      history.push('/user')
                     }}
                   />
                 </IconButton>

@@ -28,6 +28,10 @@ CREATE TABLE "matchNote" (
 	"note" VARCHAR(250)
 );
 
+CREATE TABLE "tournaments"(
+	"id" INTEGER PRIMARY KEY
+);
+
 
 
 

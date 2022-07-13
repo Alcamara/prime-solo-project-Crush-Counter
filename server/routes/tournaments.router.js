@@ -84,7 +84,7 @@ router.get('/',rejectUnauthenticated,(req, res) => {
 router.post('/search',(req, res) => {
     console.log('got from client:',req.body);
 
-    const state = (req.body.state !== '')? `"${req.body.state}"` : `"${req.user.state}"`
+    const state = (req.body.state !== '')? `"${req.body.state}"` : `""`
     console.log(state);
     
     const setting = req.body.setting 
@@ -213,41 +213,35 @@ router.post('/bookmark/:id',(req,res)=>{
 
 
   const insertQuery = `
-    INSERT INTO tournaments ("tournamentId")
-    VALUES ($1) RETURNING id;
+    INSERT INTO tournaments ("tournamentId","userId")
+    VALUES ($1,$2) RETURNING id;
   `
 
   const sqlParm = [
     id,
+    userId,
   ]
 
   
 
   pool.query(insertQuery,sqlParm)
     .then((dbres)=>{
-      const tournamentId = dbres.rows[0].id
-
-      const insertJun = `
-        INSERT INTO "userMatchNote" ("user_id", "tournament_id")
-        VALUES ($1,$2) RETURNING id;
-      `
-
-      const sqlParam = [
-          userId,
-          tournamentId
-      ]
-
-      pool.query(insertJun,sqlParam)
-        .then((dbres)=>{
-          console.log(dbres.rows[0].id);
-        })
-
-      console.log(sqlParam);
+      console.log(dbres.rows);
       
+      res.sendStatus(200)
 
     }).catch((err)=>{
       console.log(`${err}`);
+      res.sendStatus(500)
     })
+})
+/*
+  get list of tournaments bookmarked
+*/ 
+router.get('/bookmark',(req,res)=>{
+  const fetchTournaments = `
+
+  `
 })
 
 
