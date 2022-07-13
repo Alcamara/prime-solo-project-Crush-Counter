@@ -53,11 +53,22 @@ function* bookmarkTournament(action){
     }
 }
 
+function* fetchBookmarkTournaments(){
+    console.log('in fetchBookmarkTournaments');
+    try {
+        const response = yield axios.get('/api/tournaments/bookmark')
+        console.log("Bookmarked:",response.data);
+    } catch (error) {
+        console.error(`${error}`);
+    }
+}
+
 function* tournamentsSagas(){
     yield takeLatest('FETCH_TOURNAMENTS_DATA', fetchTournaments)
     yield takeLatest("FETCH_TOURNAMENT_DETAILS", fetchTournamentDetail)
     yield takeLatest("FETCH_TOURNAMENTS_LIST", fetchTournamentsList)
     yield takeLatest("BOOKMARK_TOURNAMENT", bookmarkTournament)
+    yield takeLatest("FETCH_BOOKMARK_TOURNAMENTS", fetchBookmarkTournaments)
     
 }
 
