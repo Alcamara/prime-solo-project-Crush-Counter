@@ -58,6 +58,8 @@ function* fetchBookmarkTournaments(){
     try {
         const response = yield axios.get('/api/tournaments/bookmark')
         console.log("Bookmarked:",response.data);
+
+        yield put({ type: "SET_BOOKMARK_TOURNAMENTS", payload: response.data })
     } catch (error) {
         console.error(`${error}`);
     }

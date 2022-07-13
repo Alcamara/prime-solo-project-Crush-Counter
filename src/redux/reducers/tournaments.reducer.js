@@ -39,4 +39,16 @@ export const tournamentSearch = (state = [], action)=>{
     }
 }
 
+export const bookmarkTournament = (state = [], action) =>{
+    console.log('bookmark', action.payload);
+    switch (action.type) {
+        case "SET_BOOKMARK_TOURNAMENTS": 
+            
+            return action.payload;
+    
+        default:
+            return state;
+    }
+}
+
 

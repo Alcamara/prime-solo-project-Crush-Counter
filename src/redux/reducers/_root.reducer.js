@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import errors from './errors.reducer';
 import user from './user.reducer';
 
-import { tournament, tournaments,tournamentSearch } from './tournaments.reducer';
+import { tournament, tournaments,tournamentSearch, bookmarkTournament } from './tournaments.reducer';
 import { matchNotes,savedMatchNote } from './matchNotes.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -16,8 +16,10 @@ const rootReducer = combineReducers({
   tournaments,// constains list of tournaments
   tournament,
   tournamentSearch,
+  bookmarkTournament,
   matchNotes, //
   savedMatchNote,
+  
 });
 
 export default rootReducer;

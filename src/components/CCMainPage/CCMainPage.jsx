@@ -52,10 +52,10 @@ export default function () {
             type: 'FETCH_TOURNAMENTS_DATA',
             
         })
-        // dispatch({
-        //     type: "FETCH_BOOKMARK_TOURNAMENTS",
+        dispatch({
+            type: "FETCH_BOOKMARK_TOURNAMENTS",
             
-        // })
+        })
     },[])
 
     return (
