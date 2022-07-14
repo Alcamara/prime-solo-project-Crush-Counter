@@ -1,6 +1,6 @@
 
 
-export default function CCCPlayerHub(){
+export default function CCPlayerHub(){
     return(
         <div>
             <h1>Player Hub</h1>
