@@ -27,7 +27,7 @@ import 'swiper/css/grid'
 export default function () {
     const dispatch = useDispatch()
     const tournaments = useSelector(store => store.tournaments)
-    const bookmarkTournaments = useSelector(store => store.bookmarkTournaments)
+    const bookmarkTournaments = useSelector(store => store.bookmarkTournament)
     const tournamentsByAttendees = [...tournaments]
     tournamentsByAttendees.sort((a,b) =>( b.numAttendees - a.numAttendees ))
    const tournamentsNearBy = [...tournaments]
@@ -35,6 +35,9 @@ export default function () {
 
    const history = useHistory()
 
+    if (bookmarkTournaments) {
+        console.log('bookmark in main',bookmarkTournaments);
+    }
    
 //    let lat;
 //    let long;
@@ -63,29 +66,31 @@ export default function () {
         <div className="Main">
             <CCHeader/>
 
-            <h2 className="feature-tournaments_header" >Tournament Competing In Today</h2>
-            <Swiper
-                    modules={[Navigation,Pagination,FreeMode,Grid]}
-                    spaceBetween={50}
-                    slidesPerView={1}
-                    navigation
-                    scrollbar={{ draggable: true }}
-                    onSwiper={(swiper) => console.log(swiper)}
-                    onSlideChange={() => console.log('slide change')}
-                >
-                    { tournamentsByAttendees && <div>{tournamentsByAttendees.map(tournament =>(
-                       <SwiperSlide
+            <h2 className="feature-tournaments_header">Bookmark Tournaments</h2>
+            <div className="section">
+                <Swiper
+                        modules={[Navigation,Pagination,FreeMode,Grid]}
+                        spaceBetween={50}
+                        slidesPerView={1}
+                        navigation
+                        scrollbar={{ draggable: true }}
+                        
+                    >
+                        { bookmarkTournaments && <div>{bookmarkTournaments.map(tournament =>(
                             
-                            onClick={()=> history.push('/tournamentDetail/'+tournament.id) }
-                            key={tournament.id} 
-                        > 
-                        <CCTournamentCards 
-                            className="card" 
-                            key={tournament.id} 
-                            tournament={tournament} />
-                        </SwiperSlide>
-                    ))}</div>}
-                </Swiper>
+                        <SwiperSlide
+                                
+                                onClick={()=> history.push('/tournamentDetail/'+tournament.id) }
+                                key={tournament.id} 
+                            > 
+                            <CCTournamentCards 
+                                className="card" 
+                                key={tournament.id} 
+                                tournament={tournament} />
+                            </SwiperSlide>
+                        ))}</div>}
+                    </Swiper>
+                </div>
                 <h2 className="feature-tournaments_header" >Trending Tournaments</h2>
                 <Swiper
                     modules={[Navigation,Pagination,FreeMode,Grid]}

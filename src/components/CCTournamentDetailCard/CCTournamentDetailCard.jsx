@@ -19,7 +19,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
-import Button from '@mui/material/Button';
+import Button from '@mui/joy/Button';
 import Stack from '@mui/material/Stack';
 
 
@@ -95,14 +95,20 @@ export default function () {
               <Typography variant="body2" color="text.secondary">
                 {tournamentDetail.venueAddress}
               </Typography>
+
+              {(tournamentDetail.isRegistrationOpen) ? 
+              <Typography variant="body2" color="text.secondary">
+                 Tournament Registration Open
+              </Typography>:
+              <Typography variant="body2" color="text.secondary">
+              Tournament Registration close
+            </Typography>
+              }
+              <Typography variant="body2" color="text.secondary">
+                
+              </Typography>
             </CardContent>
             <CardActions disableSpacing>
-              <IconButton aria-label="add to favorites">
-                <FavoriteIcon />
-              </IconButton>
-              <IconButton aria-label="share">
-                <ShareIcon />
-              </IconButton>
               <ExpandMore
                 expand={expanded}
                 onClick={handleExpandClick}
@@ -139,7 +145,7 @@ export default function () {
                 window.location.replace('https://start.gg'+ tournamentDetail.url)
               }}
               color="success" 
-              variant="contained"
+              variant="solid"
             >
               Sign up for Tournament
             </Button>
@@ -147,6 +153,7 @@ export default function () {
               onClick={()=>{
                 history.push('/match-note/'+tournamentDetail.id)
               }}
+              color="primary"
               variant="contained"
             >
               Create Match Note
