@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useParams, useHistory } from "react-router-dom"
 //css
+import './CCTournamentDetailCard.css'
 
 //MUI
 import { styled } from '@mui/material/styles';
@@ -19,7 +20,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
-import Button from '@mui/joy/Button';
+import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
 
@@ -145,15 +146,15 @@ export default function () {
                 window.location.replace('https://start.gg'+ tournamentDetail.url)
               }}
               color="success" 
-              variant="solid"
+              variant="contained"
             >
               Sign up for Tournament
             </Button>
             <Button
+              className="btn"
               onClick={()=>{
                 history.push('/match-note/'+tournamentDetail.id)
               }}
-              color="primary"
               variant="contained"
             >
               Create Match Note
