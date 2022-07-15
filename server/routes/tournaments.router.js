@@ -100,13 +100,13 @@ router.post('/search',(req, res) => {
         "query": `
         query{
           tournaments(query:{
-            perPage:50
+            perPage:100
             page:1
             filter:{
+              countryCode: "US"
               videogameIds: [7,10055,33990]
               hasOnlineEvents: ${setting}
               past:false
-              upcoming: true
               addrState: ${state}
             }
           }){
