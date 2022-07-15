@@ -8,9 +8,13 @@ import './CCTournamentSearch.css'
 
 export default function CCTournamentSearch(){
     const dispatch = useDispatch();
-    const tournamentSearchResults = useSelector(store => store.tournamentSearch);
+    console.log(Date.now());
+    const tournamentSearchResults = useSelector(store => store.tournamentSearch
+        .sort((a,b)=>( a.startAt - b.startAt))
+        .filter(tournamentObj => tournamentObj.startAt > Math.round(Date.now()/ 1000 )));
     const history = useHistory()
     
+    console.log(tournamentSearchResults, 'timestamp :', Date.now());
 
     return (
         <div>
