@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import SearchIcon from '@material-ui/icons/Search';
 import AssessmentIcon from '@material-ui/icons/Assessment';
 import HomeIcon from '@material-ui/icons/Home';
+import Paper from '@mui/material/Paper';
 
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -25,6 +26,7 @@ export default function CCNav(){
 
     return(
        <div className='bottomNav'>
+        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
             <BottomNavigation
             
             onChange={(event, newValue) => {
@@ -57,7 +59,7 @@ export default function CCNav(){
               icon={<AssessmentIcon />} 
             />
             </BottomNavigation>
-
+          </Paper>
        </div>
     )
 }

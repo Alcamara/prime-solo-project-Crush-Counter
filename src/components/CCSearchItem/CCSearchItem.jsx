@@ -44,6 +44,9 @@ export default function CCSearchItem({tournament}){
                 <Typography level="h4" fontSize="" id="card-description" mb={0.5}>
                     {tournament.name}
                 </Typography>
+                <Typography>
+                    {`${date.getMonth()+1}/${date.getDate()}`}
+                </Typography>
                 <Typography fontSize="sm" aria-describedby="card-description" mb={1}>
                     {tournament.addrState}
                 </Typography>

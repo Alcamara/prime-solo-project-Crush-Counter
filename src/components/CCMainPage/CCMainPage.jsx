@@ -27,7 +27,7 @@ import 'swiper/css/grid'
 export default function () {
     const dispatch = useDispatch()
     const tournaments = useSelector(store => store.tournaments)
-    const bookmarkTournaments = useSelector(store => store.bookmarkTournament)
+    const bookmarkTournaments = useSelector(store => store.bookmarkTournament.sort((a,b)=>(a.startAt - b.startAt)))
     const tournamentsByAttendees = [...tournaments]
     tournamentsByAttendees.sort((a,b) =>( b.numAttendees - a.numAttendees ))
    const tournamentsNearBy = [...tournaments]
