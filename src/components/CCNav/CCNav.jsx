@@ -51,7 +51,11 @@ export default function CCNav(){
                 icon={<HomeIcon />} 
               />
             
-            <BottomNavigationAction label="Player Hub" icon={<AssessmentIcon />} />
+            <BottomNavigationAction 
+              onClick={()=> history.push('/hub')}
+              label="Player Hub" 
+              icon={<AssessmentIcon />} 
+            />
             </BottomNavigation>
 
        </div>

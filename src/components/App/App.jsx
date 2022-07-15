@@ -29,7 +29,7 @@ import CCMatchNote from '../CCMatchNote/CCMatchNote';
 import CCSavedMatchNote from '../CCSavedMatchNote/CCSavedMatchNote';
 import CCMatchNoteList from '../CCMatchNoteList/CCMatchNoteList';
 import CCTournamentSearchDD from '../CCTournamentSearchDD/CCTournamentSearchDD';
-
+import CCPlayerHub from '../CCPlayerHub/CCPlayerHub';
 import './App.css';
 
 function App() {
@@ -68,6 +68,16 @@ function App() {
             path="/user"
           >
             <CCMainPage/>
+            <CCNav/>
+          </ProtectedRoute>
+
+          <ProtectedRoute
+            // Player hub
+            exact
+            path="/hub"
+          >
+            <CCHeader/>
+            <CCPlayerHub/>
             <CCNav/>
           </ProtectedRoute>
 

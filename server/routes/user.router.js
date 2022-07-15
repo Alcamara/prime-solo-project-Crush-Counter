@@ -59,4 +59,26 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+router.get('/hub',(req,res)=>{
+   const userId = req.user.id
+
+   console.log(userId);
+  const playerStatusQuery = `
+    SELECT "user".id, "user".gamertag, "matchNote"."tournamentId", count("matchNote"."tournamentId") as NumMatches, COUNT("matchNote".win) filter(Where "matchNote".win = true) as numWins, array_agg("matchNote"."skillDemonstrated") as "skillDemonstrated", array_agg("matchNote"."skillToImprove") as "skillToImprove", "matchNote".date  from "user"
+    JOIN "matchNote" on "user".id = "matchNote"."userId"
+    WHERE "user".id = $1
+    GROUP BY "user".id, "user".gamertag,"matchNote"."tournamentId", "matchNote".date;
+  `
+
+  pool.query(playerStatusQuery,[userId])
+    .then((dbRes)=>{
+      res.send(dbRes.rows)
+    }).catch((err)=>{
+      console.error(`${err}`);
+    })
+
+  
+   
+})
+
 module.exports = router;

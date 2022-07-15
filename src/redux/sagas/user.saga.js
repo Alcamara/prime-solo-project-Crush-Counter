@@ -24,8 +24,21 @@ function* fetchUser() {
   }
 }
 
+function* fetchPlayerHub(){
+  try {
+    const Player = yield axios.get('/api/user/hub')
+    
+
+    yield put({type:'SET_PLAYER_HUB', payload: Player.data})
+  } catch (error) {
+    console.error(`${error}`);
+  }
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
+  yield takeLatest('FETCH_PLAYER_HUB', fetchPlayerHub);
+
 }
 
 export default userSaga;
