@@ -65,12 +65,22 @@ function* fetchBookmarkTournaments(){
     }
 }
 
+function* deleteBookmarkTournament(action){
+    console.log('in delete', action);
+    try {
+        const response = yield axios.delete('/api/tournaments/bookmark/'+action.payload)
+    } catch (error) {
+        
+    }
+}
+
 function* tournamentsSagas(){
     yield takeLatest('FETCH_TOURNAMENTS_DATA', fetchTournaments)
     yield takeLatest("FETCH_TOURNAMENT_DETAILS", fetchTournamentDetail)
     yield takeLatest("FETCH_TOURNAMENTS_LIST", fetchTournamentsList)
     yield takeLatest("BOOKMARK_TOURNAMENT", bookmarkTournament)
     yield takeLatest("FETCH_BOOKMARK_TOURNAMENTS", fetchBookmarkTournaments)
+    yield takeLatest("DELETE_BOOKMARK_TOURNAMENT", deleteBookmarkTournament)
     
 }
 

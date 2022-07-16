@@ -235,9 +235,30 @@ router.post('/bookmark/:id',(req,res)=>{
       res.sendStatus(500)
     })
 })
+
 /*
-  get list of tournaments bookmarked
-*/ 
+ 
+*/
+
+router.delete('/bookmark/:id',(req,res)=>{
+   console.log(req.params.id);
+
+   const deleteQuery = `
+    DELETE FROM "tournaments"
+    WHERE "tournaments"."tournamentId" = $1 ;
+   `
+
+   pool.query(deleteQuery,[req.params.id])
+    .then(()=>{
+      res.sendStatus(200)
+    }).catch((err)=>{
+      res.sendStatus(500)
+    })
+})
+
+
+
+
 router.get('/bookmark',(req,res)=>{
 
   console.log(req.user.id);

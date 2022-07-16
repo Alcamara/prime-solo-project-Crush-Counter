@@ -66,6 +66,7 @@ function App() {
             exact
             path="/user"
           >
+            <CCHeader/>
             <CCMainPage/>
             <CCNav/>
           </ProtectedRoute>

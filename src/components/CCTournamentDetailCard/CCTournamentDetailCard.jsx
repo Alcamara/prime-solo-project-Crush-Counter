@@ -20,6 +20,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import BookmarkAddIcon from '@mui/icons-material/BookmarkAdd';
+import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 
@@ -41,8 +42,16 @@ export default function () {
     const dispatch = useDispatch()
     const {id} = useParams()
     const tournamentDetail = useSelector(store => store.tournament)
+    const bookmarkTournaments = useSelector(store => store.bookmarkTournament)
     const startDate = new Date(tournamentDetail.startAt *1000)
     const history = useHistory()
+    let bookmarkTournamentIds = []
+
+    bookmarkTournamentIds = [...bookmarkTournamentIds, 
+      bookmarkTournaments.map(tournament =>(
+        tournament.id
+      ))] 
+ 
     
 
     const [expanded, setExpanded] = useState(false);
@@ -58,24 +67,34 @@ export default function () {
             type:"FETCH_TOURNAMENT_DETAILS",
             payload: id
         })
+
+        dispatch({
+          type: "FETCH_BOOKMARK_TOURNAMENTS",
+          
+      })
     },[id])
+
+
+   
 
     return(
         <div className="tournament-card">
            { tournamentDetail && tournamentDetail.images && tournamentDetail.images.length >= 1 &&
             <Card sx={{ maxWidth: 445 }}>
-            <CardHeader
+            {(bookmarkTournamentIds[0].indexOf(tournamentDetail.id) !== -1)?
+              <CardHeader
               avatar={
                 <Avatar  aria-label="recipe">
                   <img src={tournamentDetail.images[0].url} alt=""  />
                 </Avatar>
               }
+              
               action={
                 <IconButton aria-label="settings">
-                  <BookmarkAddIcon
+                  <BookmarkRemoveIcon
                     onClick={()=>{
                       dispatch({
-                        type: "BOOKMARK_TOURNAMENT",
+                        type: "DELETE_BOOKMARK_TOURNAMENT",
                         payload: tournamentDetail.id
                       })
                       history.push('/user')
@@ -85,7 +104,31 @@ export default function () {
               }
               title={tournamentDetail.name}
               subheader={`${startDate.getMonth()+1}/${startDate.getDate()}/${startDate.getFullYear()}`}
-            />
+            />:
+            <CardHeader
+            avatar={
+              <Avatar  aria-label="recipe">
+                <img src={tournamentDetail.images[0].url} alt=""  />
+              </Avatar>
+            }
+            
+            action={
+              <IconButton aria-label="settings">
+                <BookmarkAddIcon
+                  onClick={()=>{
+                    dispatch({
+                      type: "BOOKMARK_TOURNAMENT",
+                      payload: tournamentDetail.id
+                    })
+                    history.push('/user')
+                  }}
+                />
+              </IconButton>
+            }
+            title={tournamentDetail.name}
+            subheader={`${startDate.getMonth()+1}/${startDate.getDate()}/${startDate.getFullYear()}`}
+          />
+            }
             <CardMedia
               component="img"
               height="194"

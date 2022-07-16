@@ -3,7 +3,7 @@ import { useDispatch,useSelector } from "react-redux"
 import { Link, useHistory } from 'react-router-dom';
 import CCTournamentCards from "../CCTournamentCards/CCTournamentCards"
 import CCHeader from "../CCHeader/CCHeader"
-import CCNav from "../CCNav/CCNav";
+
 import './CCMainPage.css'
 
 //joy-ui
@@ -22,6 +22,7 @@ import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/grid'
+
 
 
 export default function () {
@@ -64,10 +65,10 @@ export default function () {
 
     return (
         <div className="Main">
-            <CCHeader/>
+            
 
             <h2 className="feature-tournaments_header">Bookmark Tournaments</h2>
-            <div className="section">
+            
                 <Swiper
                         modules={[Navigation,Pagination,FreeMode,Grid]}
                         spaceBetween={50}
@@ -89,8 +90,8 @@ export default function () {
                                 tournament={tournament} />
                             </SwiperSlide>
                         ))}</div>}
-                    </Swiper>
-                </div>
+                </Swiper>
+               
                 <h2 className="feature-tournaments_header" >Trending Tournaments</h2>
                 <Swiper
                     modules={[Navigation,Pagination,FreeMode,Grid]}
