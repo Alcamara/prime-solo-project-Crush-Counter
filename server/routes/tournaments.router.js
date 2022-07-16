@@ -100,7 +100,7 @@ router.post('/search',(req, res) => {
         "query": `
         query{
           tournaments(query:{
-            perPage:100
+            perPage:200
             page:1
             filter:{
               countryCode: "US"
