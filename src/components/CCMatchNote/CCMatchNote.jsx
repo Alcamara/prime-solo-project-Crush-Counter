@@ -135,10 +135,18 @@ export default function CCMatchNote() {
             </div>
             <div className='question'>
             <TextField
+                value={matchNote.note}
                 className="textField"
                 id="filled-multiline-static"
                 label="Additional Notes"
                 multiline
+                //remove later
+                onClick={()=>{
+                    setMatchNote({
+                        ...matchNote,
+                        note:"Is M.Bison's St. MP plus on block?"
+                    })
+                }}
                 onChange={(evt)=>{
                     setMatchNote({
                         ...matchNote,

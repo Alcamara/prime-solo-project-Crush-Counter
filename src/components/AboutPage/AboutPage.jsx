@@ -9,7 +9,24 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+      <h2>Technologies Used:</h2>
+      <ul>
+        <li>React</li>
+        <li>Express</li>
+        <li>Redux</li>
+        <li>Redux-Saga</li>
+        <li>Material UI</li>
+        <li>Postgres</li>
+        <li>Start.gg Api</li>
+      </ul>
+      <h2>Cool Challenges</h2>
+      <ul><li> GraphQL</li></ul>
+      <h2>What Do I want to work on next?</h2>
+      <ol>
+        <li>Add comments section to tournament details page.</li>
+        <li>In app chat functionality</li>
+      </ol>
+      
       </div>
     </div>
   );

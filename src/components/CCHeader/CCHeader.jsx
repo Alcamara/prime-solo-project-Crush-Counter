@@ -17,6 +17,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import EventNoteIcon from '@mui/icons-material/EventNote';
 import LogoutIcon from '@mui/icons-material/Logout';
+import InfoIcon from '@mui/icons-material/Info';
 //list
 import List from '@mui/material/List';
 import Divider from '@mui/material/Divider';
@@ -98,11 +99,13 @@ export default function CCHeader (){
                     </ListItemButton>
                 </ListItem>
                 <ListItem>
-                    <ListItemButton>
+                    <ListItemButton
+                        onClick={()=> history.push('/about')}
+                    >
                         <ListItemIcon>
-                                <EventNoteIcon/>
+                                <InfoIcon/>
                         </ListItemIcon>
-                        <ListItemText primary={`Bookmarked Tournaments`} />
+                        <ListItemText primary={`About Page`} />
                     </ListItemButton>
                 </ListItem>
                 <ListItem>

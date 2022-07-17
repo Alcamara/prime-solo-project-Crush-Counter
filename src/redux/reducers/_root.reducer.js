@@ -4,6 +4,7 @@ import user from './user.reducer';
 import { playerHub } from './playerHub.reducer';
 import { tournament, tournaments,tournamentSearch, bookmarkTournament } from './tournaments.reducer';
 import { matchNotes,savedMatchNote } from './matchNotes.reducer';
+import { snackbar } from './snackbar.reducer';
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   bookmarkTournament,
   matchNotes, //
   savedMatchNote,
+  snackbar
   
 });
 

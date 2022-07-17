@@ -55,6 +55,7 @@ function App() {
             exact
             path="/about"
           >
+            <CCHeader/>
             <AboutPage />
           </Route>
 

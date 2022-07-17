@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 import { makeStyles } from '@material-ui/core/styles';
@@ -23,10 +24,26 @@ export default function CCNav(){
     const classes = useStyles();
     const history = useHistory()
     const dispatch = useDispatch()
+    const [show,setShow] = useState(true)
+
+    const controlNavBar = ()=>{
+      if(window.scrollY > 50 ){
+          setShow(false)
+      }else{
+        setShow(true)
+      }
+    }
+
+    useEffect(()=>{
+        window.addEventListener('scroll', controlNavBar )
+        return ()=>{
+          window.removeEventListener('scroll',controlNavBar)
+        }
+    },[])
 
     return(
-       <div className='bottomNav'>
-        <Paper sx={{ position: 'fixed', bottom: 0, left: 0, right: 0 }} elevation={3}>
+       <div className={` ${show && 'bottomNav' }`}>
+        
             <BottomNavigation
             
             onChange={(event, newValue) => {
@@ -59,7 +76,7 @@ export default function CCNav(){
               icon={<AssessmentIcon />} 
             />
             </BottomNavigation>
-          </Paper>
+          
        </div>
     )
 }

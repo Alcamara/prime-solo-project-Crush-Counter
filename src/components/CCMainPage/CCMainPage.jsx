@@ -3,6 +3,7 @@ import { useDispatch,useSelector } from "react-redux"
 import { Link, useHistory } from 'react-router-dom';
 import CCTournamentCards from "../CCTournamentCards/CCTournamentCards"
 import CCHeader from "../CCHeader/CCHeader"
+import { Button } from "@mui/material";
 
 import './CCMainPage.css'
 
@@ -22,7 +23,7 @@ import 'swiper/css/free-mode'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/grid'
-
+import './image/CCBanner.png'
 //SnackBar MUI
 import Snackbar from '@mui/material/Snackbar';
 
@@ -32,14 +33,15 @@ export default function () {
     const dispatch = useDispatch()
     const tournaments = useSelector(store => store.tournaments)
     const bookmarkTournaments = useSelector(store => store.bookmarkTournament.sort((a,b)=>(a.startAt - b.startAt)))
+    const snackbarAlert = useSelector(store => store.snackbar)
     const [state, setState] = useState({
         open: false,
         vertical: 'top',
         horizontal: 'center',
       });
 
+      const { vertical, horizontal, open } = state;
 
-    const { vertical, horizontal, open } = state;
 
     const handleClick = (newState) => () => {
         setState({ open: true, ...newState });
@@ -60,15 +62,6 @@ export default function () {
         console.log('bookmark in main',bookmarkTournaments);
     }
    
-//    let lat;
-//    let long;
-
-//    navigator.geolocation.getCurrentPosition(function(position){
-//      lat = position.coords.latitude;
-//      long = position.coords.longitude;
-//      console.log('lat:', lat, 'long:', long );
-//    })
-
    
     
     useEffect(()=>{
@@ -85,8 +78,9 @@ export default function () {
 
     return (
         <div className="Main">
-            
-
+            <div className="banner">
+                
+            </div>
             <h2 className="feature-tournaments_header">Bookmark Tournaments</h2>
             
                 <Swiper
