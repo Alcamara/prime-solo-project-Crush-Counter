@@ -97,6 +97,8 @@ export default function () {
                         type: "DELETE_BOOKMARK_TOURNAMENT",
                         payload: tournamentDetail.id
                       })
+
+                      
                       history.push('/user')
                     }}
                   />

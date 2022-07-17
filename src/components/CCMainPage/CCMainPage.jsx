@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch,useSelector } from "react-redux"
 import { Link, useHistory } from 'react-router-dom';
 import CCTournamentCards from "../CCTournamentCards/CCTournamentCards"
@@ -23,12 +23,32 @@ import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import 'swiper/css/grid'
 
+//SnackBar MUI
+import Snackbar from '@mui/material/Snackbar';
+
 
 
 export default function () {
     const dispatch = useDispatch()
     const tournaments = useSelector(store => store.tournaments)
     const bookmarkTournaments = useSelector(store => store.bookmarkTournament.sort((a,b)=>(a.startAt - b.startAt)))
+    const [state, setState] = useState({
+        open: false,
+        vertical: 'top',
+        horizontal: 'center',
+      });
+
+
+    const { vertical, horizontal, open } = state;
+
+    const handleClick = (newState) => () => {
+        setState({ open: true, ...newState });
+    };
+
+    const handleClose = () => {
+        setState({ ...state, open: false });
+    };
+
     const tournamentsByAttendees = [...tournaments]
     tournamentsByAttendees.sort((a,b) =>( b.numAttendees - a.numAttendees ))
    const tournamentsNearBy = [...tournaments]

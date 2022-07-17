@@ -2,7 +2,8 @@ import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom";
 import CCSearchItem from "../CCSearchItem/CCSearchItem";
-
+import ScrollToTop from "react-scroll-to-top";
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 //cc
 import './CCTournamentSearch.css'
 
@@ -28,6 +29,9 @@ export default function CCTournamentSearch(){
                     />
                 ))
             }
+
+            <ScrollToTop smooth color="blue" component={<KeyboardArrowUpIcon/>} />
+
             </div>
         </div>
     )
