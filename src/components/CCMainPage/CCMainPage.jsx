@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch,useSelector } from "react-redux"
 import { Link, useHistory } from 'react-router-dom';
 import CCTournamentCards from "../CCTournamentCards/CCTournamentCards"
@@ -38,6 +38,16 @@ export default function () {
         horizontal: 'center',
       });
 
+
+    const { vertical, horizontal, open } = state;
+
+    const handleClick = (newState) => () => {
+        setState({ open: true, ...newState });
+    };
+
+    const handleClose = () => {
+        setState({ ...state, open: false });
+    };
 
     const tournamentsByAttendees = [...tournaments]
     tournamentsByAttendees.sort((a,b) =>( b.numAttendees - a.numAttendees ))
