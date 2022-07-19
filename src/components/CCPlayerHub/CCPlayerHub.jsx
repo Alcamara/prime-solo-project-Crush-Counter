@@ -77,7 +77,7 @@ export default function CCPlayerHub(){
             case 'footsies':
                 skillDemonstratedCount[3] += 1 
                 break;
-            case 'match-up Knowledge':
+            case 'Match up knowledge':
                 skillDemonstratedCount[4] += 1 
                 break;
             case 'punishes':
@@ -85,6 +85,9 @@ export default function CCPlayerHub(){
                 break;
             case 'combo':
                 skillDemonstratedCount[6] += 1
+                break;
+            case "combo execution" :
+                skillToImproveCount[6] += 1
                 break;
             case 'anti-air':
                 skillDemonstratedCount[7] += 1
@@ -108,13 +111,16 @@ export default function CCPlayerHub(){
             case 'footsies':
                 skillToImproveCount[3] += 1 
                 break;
-            case 'match-up Knowledge':
+            case 'Match up knowledge':
                 skillToImproveCount[4] += 1 
                 break;
             case 'punishes':
                 skillToImproveCount[5] += 1
                 break;
-            case 'combo':
+            case "combo" :
+                skillToImproveCount[6] += 1
+                break;
+            case "combo execution" :
                 skillToImproveCount[6] += 1
                 break;
             case 'anti-air':

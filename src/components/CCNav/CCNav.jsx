@@ -27,7 +27,7 @@ export default function CCNav(){
     const [show,setShow] = useState(true)
 
     const controlNavBar = ()=>{
-      if(window.scrollY > 50 ){
+      if(window.scrollY > 5 ){
           setShow(false)
       }else{
         setShow(true)
