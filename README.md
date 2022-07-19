@@ -35,10 +35,6 @@ To see the fully functional site, please visit: Comming Soon
 5. Run `npm run client` in your terminal
 6. The `npm run client` command will open up a new browser tab for you!
 
-## Usage
-How does someone use this application? Tell a user story here.
-
-
 
 ## Built With
 
