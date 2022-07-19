@@ -19,7 +19,10 @@ To see the fully functional site, please visit: Comming Soon
 
 ## Screen Shot
 
-<img src='./image/CC-PlayerHub.gif' height='300'>
+<img src='./image/CC-BookMarkTournament.gif' height='300'>
+<img src='./image/CCTournamentSearch.gif' height='300'>
+<img src='./image/CC-PlayerHub.gif' height='300'> 
+<img src='./image/CC-MatchNote.gif' height='300'>
 
 
 ## Installation
