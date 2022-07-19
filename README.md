@@ -27,7 +27,6 @@ To see the fully functional site, please visit: Comming Soon
 
 ## Installation
 
-If your application has secret keys (for example --  Twilio), make sure you tell them how to set that up, both in getting the key and then what to call it in the `.env` file.
 
 1. Create a database named `crush-counter-database`,
 2. The queries in the `database.sql` file are set up to create all the necessary tables and populate the needed data to allow the application to run correctly. The project is built on [Postgres](https://www.postgresql.org/download/), so you will need to make sure to have that installed. We recommend using Postico to run those queries as that was used to create the queries, 
@@ -49,6 +48,10 @@ How does someone use this application? Tell a user story here.
 - Redux
 - Redux-Saga
 - Postgres
+- React
+- Material UI
+- SwiperJs
+- React-scroll-to-top
 - Start.gg API
 - Passport
 
