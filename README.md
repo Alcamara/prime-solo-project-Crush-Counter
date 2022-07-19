@@ -19,7 +19,7 @@ To see the fully functional site, please visit: Comming Soon
 
 ## Screen Shot
 
-Include one or two screen shots of your project here (optional). Remove if unused.
+<img src='./image/CC-PlayerHub.gif'>
 
 
 ## Installation
