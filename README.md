@@ -6,19 +6,16 @@
 ![TOP_LANGUAGE](https://img.shields.io/github/languages/top/scottbromander/the_marketplace.svg?style=flat-square)
 ![FORKS](https://img.shields.io/github/forks/scottbromander/the_marketplace.svg?style=social)
 
-# PROJECT NAME
+# Crush Counter
 
 ## Description
 
 _Duration: 2 Week Sprint_
 
-Directly above this is how long it took you to develop the project. Your project description goes here. What problem did you solve? How did you solve it? 
+This app aims to provide data to intermediate to advanced Esport fighting game players to help improve their game. Users can search for tournaments to compete in; create, review, and edit match notes; and show the user's win rate, fighting game skills they are doing well, and areas of opportunity.
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed aliquam at massa in faucibus. Etiam volutpat, risus non mollis convallis, velit nisi pulvinar mi, eu faucibus orci nisi eget nibh. Integer a velit pretium, volutpat arcu eleifend, fringilla elit. Cras erat sapien, convallis venenatis tellus vitae, feugiat dictum felis.
 
-Suspendisse euismod volutpat aliquet. Maecenas vulputate mauris in pellentesque facilisis. Phasellus varius malesuada semper. Cras sollicitudin diam mollis maximus aliquam.
-
-To see the fully functional site, please visit: [DEPLOYED VERSION OF APP](www.heroku.com)
+To see the fully functional site, please visit: Comming Soon
 
 ## Screen Shot
 
