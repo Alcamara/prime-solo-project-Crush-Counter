@@ -21,7 +21,7 @@ export default function CCTournamentCards({tournament}){
                 <CardOverflow>
                     <AspectRatio ratio="2">
                         <img
-                            src={tournament.images[1].url}
+                            src={tournament.images[0].url}
                             alt=""
                         />
                     </AspectRatio>
