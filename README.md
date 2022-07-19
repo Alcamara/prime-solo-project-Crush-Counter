@@ -19,7 +19,7 @@ To see the fully functional site, please visit: Comming Soon
 
 ## Screen Shot
 
-<img src='./image/CC-PlayerHub.gif' height='250'>
+<img src='./image/CC-PlayerHub.gif' height='300'>
 
 
 ## Installation
