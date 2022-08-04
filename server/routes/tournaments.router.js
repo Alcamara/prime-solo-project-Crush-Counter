@@ -277,7 +277,10 @@ router.get('/bookmark',(req,res)=>{
       })
       .then((tournamentIds)=>{
         console.log(tournamentIds);
-        
+         if (tournamentIds.length === 0){
+            res.send([])
+            return
+         }
 
         let query = { "query": ``};
 
@@ -367,6 +370,10 @@ router.get('/bookmark',(req,res)=>{
 
       })
       .then((apiResults)=>{
+        // If there are no tournaments, then we don't query the API
+        if (!apiResults)  {
+          return;
+        }
         console.log(apiResults.data);
         
           let queryArr = []
@@ -382,7 +389,9 @@ router.get('/bookmark',(req,res)=>{
 
          
       }).catch((err)=>{
-        res.sendStatus(`${err}`)
+        console.error(`Error on line 385: ${err}`);
+        res.sendStatus(500)
+        
       })
 })
 
