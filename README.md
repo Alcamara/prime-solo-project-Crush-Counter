@@ -15,7 +15,7 @@ _Duration: 2 Week Sprint_
 This app aims to provide data to intermediate to advanced Esport fighting game players to help improve their game. Users can search for tournaments to compete in; create, review, and edit match notes; and show the user's win rate, fighting game skills they are doing well, and areas of opportunity.
 
 
-To see the fully functional site, please visit: Comming Soon
+To see the fully functional site, please visit: https://dry-fortress-72359.herokuapp.com/
 
 ## Screen Shot
 
